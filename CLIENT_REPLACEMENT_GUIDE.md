@@ -1,104 +1,70 @@
-# CLIENT_REPLACEMENT_GUIDE.md — Guia de Substituição para Publicação
+# CLIENT_REPLACEMENT_GUIDE — Metal & Art Serralheria
 
-Guia direto para trocar tudo que é provisório pelos materiais oficiais da
-**Metal & Art Serralheria** antes da publicação.
+Guia de substituição de conteúdo do protótipo pelos materiais oficiais.
+Caminhos exatos para cada item:
 
----
+## LOGO
+- **Onde está:** reprodução tipográfica em `src/components/ui.tsx` → componente `Logo`
+  (variações `badge` e inline) + `SparkMark` (símbolo da faísca).
+- **Substituir por:** arquivo vetorial oficial em `public/client-assets/logo/`
+  (`logo-original.svg`, `logo-light.svg`, `logo-dark.svg`, `logo-symbol.svg`).
+- Trocar o retorno do componente por `<img src="/client-assets/logo/...">`.
 
-## 1. LOGO
+## INSTAGRAM
+- **Catálogo de posts:** `src/components/Social.tsx` → constante `IG_POSTS`
+  (URLs reais já apontam para as publicações oficiais).
+- **Imagens dos cards:** `assets.instagram.*` em `src/config/assets.ts` →
+  trocar pelas fotos/vídeos originais em HD (salvar em `public/client-assets/social/`).
+- **Link do perfil:** `business.instagram` em `src/config/business.ts`.
 
-- Status: **SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE**.
-- Onde trocar: salvar os arquivos em `public/client-assets/logo/`
-  (`logo-original.svg`, `logo-light.svg`, `logo-dark.svg`, `logo-symbol.svg`),
-  registrar os caminhos em `src/config/assets.ts` (`assets.logo`) e substituir
-  o componente `Logo` em `src/components/ui.tsx` por uma `<img>`.
-
-## 2. INSTAGRAM
-
-- Perfil oficial: `https://www.instagram.com/serralheriametaleart/`
-  (já configurado em `src/config/business.ts` → `instagram`).
-- Para exibir posts reais: baixar os originais com autorização, salvar em
-  `public/client-assets/social/` e apontar as URLs em `REEL_CARDS`
-  (`src/components/Social.tsx`).
-
-## 3. GOOGLE MAPS / FICHA DO GOOGLE
-
-- Endereço, rota e embed: `src/config/business.ts` → `address`,
+## GOOGLE MAPS / FICHA
+- **Endereço, rotas e embed:** `src/config/business.ts` → `address`,
   `mapsEmbedUrl`, `mapsDirectionsUrl`, `mapsReviewsUrl`.
-- Nota/avaliações: preencher `business.google.rating`,
-  `business.google.reviewCount` e `business.google.lastUpdated` com os dados
-  coletados na ficha — **nunca publicar sem data de coleta**.
-- Textos das avaliações: trocar `business.provisionalReviews` por avaliações
-  reais (mantendo a fonte "Google").
+- **Mapa na página:** `src/components/Social.tsx` → seção `Location` (iframe).
+- **Nota/avaliações:** `business.google` + `business.googleReviews`
+  (recoletar e atualizar `lastUpdated`).
 
-## 4. FOTOS
+## FOTOS
+- **Arquivo central:** `src/config/assets.ts` — todas as chaves
+  (`hero`, `gates`, `automation`, `railings`, `grids`, `rollingDoors`,
+  `beforeAfter`, `workshop`). Salvar originais em `public/client-assets/`
+  seguindo as subpastas `hero/ gates/ automation/ railings/ grids/
+  rolling-doors/ before-after/ workshop/` e trocar as URLs.
 
-- Todas as imagens estão em **um único lugar**: `src/config/assets.ts`.
-- Fluxo: salvar fotos reais (WebP/JPG, 1600–2000px no lado maior) em
-  `public/client-assets/<pasta>/` e trocar a URL pela string
-  `"/client-assets/<pasta>/<arquivo>"`. Nada mais precisa mudar.
+## VÍDEOS
+- `assets.video.hero` em `src/config/assets.ts` (salvar em
+  `public/client-assets/video/` com poster em `posters/`).
+- Reels para cases: adicionar em `src/data/projects.ts` (`videos`).
 
-## 5. VÍDEOS
+## PORTFÓLIO
+- `src/data/projects.ts` — substituir `images`, `beforeImage/afterImage`,
+  descrição e `source` de cada projeto pelos trabalhos reais
+  (nunca inventar cliente, local ou escopo).
 
-- Solicitar à empresa: soldagem com faíscas, portão em funcionamento,
-  automação e instalação. Salvar em `public/client-assets/video/` (MP4 H.264,
-  até ~8 MB para o hero) + poster JPG em `public/client-assets/posters/`.
-- Integrar no `Hero` (`src/components/Hero.tsx`) com `<video autoPlay muted
-  loop playsInline poster=…>`.
+## CONTATOS
+- `src/config/business.ts` — `phoneDisplay`, `whatsappDigits`, `email`,
+  `website`, `instagram`, `facebook`, `hours`, `serviceAreas`.
 
-## 6. PORTFÓLIO
+## SERVIÇOS
+- `src/data/services.ts` — textos, benefícios, aplicações e
+  `whatsappMessage` de cada serviço; imagens via `assets`.
 
-- Dados: `src/data/projects.ts`. Adicionar um objeto por obra real:
-  título (sem inventar nome de cliente), categoria, descrição, escopo,
-  imagens, `beforeImage`/`afterImage` quando houver par real, `source`
-  (origem da foto), `location`.
-- Categorias disponíveis: `portoes`, `automacao`, `reformas`, `protecao`,
-  `corrimaos`, `enrolar`, `estruturas` (editar `filters` se necessário).
+## SEO
+- Meta tags + Schema.org: `index.html` (JSON-LD LocalBusiness com
+  AggregateRating — recoletar nota antes de publicar).
+- `public/robots.txt`; URLs semânticas via rotas (`#/servicos/[slug]`,
+  `#/projetos/[slug]`).
 
-## 7. CONTATOS
+## ANALYTICS
+- Eventos prontos via `track()` em `src/lib/motion.ts`
+  (whatsapp, orçamento, projeto aberto, rota, instagram etc.).
+  Conectar o provider real (ex.: GA4) dentro dessa função.
 
-- `src/config/business.ts`: `phoneDisplay`, `whatsappDigits`, `email`,
-  `address`, `hours` (confirmar horários oficiais), `serviceAreas`
-  (confirmar raio real de atendimento).
+## TEXTOS
+- Slogan oficial e dados institucionais: `src/config/business.ts`.
+- Conteúdo das páginas: `src/pages/*` e `src/components/*`.
 
-## 8. SERVIÇOS
-
-- `src/data/services.ts`: textos, benefícios, aplicações e mensagem de
-  WhatsApp de cada serviço. Novos serviços = novo objeto + página automática
-  em `/servicos/[slug]`.
-
-## 9. SEO
-
-- Metadata base: `index.html` (title, description, OG, JSON-LD
-  `HomeAndConstructionBusiness`).
-- Ao migrar para SSR/Next.js: gerar `sitemap.xml` com as rotas reais e
-  metadata dinâmica por página. Manter o JSON-LD sem `AggregateRating` até
-  haver nota real coletada.
-- Keywords locais já trabalhadas no conteúdo: serralheria/serralheiro Zona
-  Leste, reforma e conserto de portão, automação de portão, grades,
-  corrimãos, guarda-corpos, porta de enrolar (Itaquera/São Paulo).
-
-## 10. ANALYTICS
-
-- Eventos já instrumentados via `track()` (`src/lib/motion.tsx`): cliques de
-  WhatsApp, orçamento, abertura de projetos, filtros, diagnóstico, rota,
-  Instagram e telefone. Basta conectar um provider que leia `window.dataLayer`
-  (ex.: GTM) — nenhum dado é enviado hoje.
-
-## 11. TEXTOS
-
-- Slogan/institucional: `business.ts` + `src/pages/StaticPages.tsx` (Sobre) +
-  `src/components/AboutSection.tsx`.
-- **Não inventar**: anos de empresa, número de clientes/obras, garantias,
-  certificações, marcas parceiras, bairros atendidos além do confirmado,
-  depoimentos, preços ou prazos.
-
-## 12. ASSETS TEMPORÁRIOS (checklist de troca)
-
-| Temporário | Substituir por |
-|---|---|
-| 10 imagens geradas (`assets.ts`) | Fotos reais da oficina/obras |
-| Marca tipográfica SVG (`ui.tsx`) | Logo vetorial oficial |
-| Avaliações ilustrativas (`business.ts`) | Avaliações reais do Google |
-| Horários "consulte" | Horários oficiais |
-| Par antes/depois genérico | Par real da mesma obra |
+## ASSETS TEMPORÁRIOS (remover/trocar antes de publicar)
+- Todas as URLs `image.qwenlm.ai` em `src/config/assets.ts` (referências
+  ilustrativas) — ver inventário completo em `ASSET_SOURCES.md` e
+  checklist em `ASSET_AUDIT.md`.

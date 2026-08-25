@@ -10,12 +10,18 @@ import {
   IconPin,
   IconStar,
   IconWhatsApp,
+  Logo,
   SectionTag,
 } from "./ui";
 
-/* ================= AVALIAÇÕES (GOOGLE) ================= */
+/* ================= AVALIAÇÕES (GOOGLE) =================
+ * Avaliações públicas coletadas do widget oficial (Google)
+ * exibido no site da própria empresa em 22/08/2026.
+ * Nota/quantidade são dados externos: recoletar periodicamente.
+ */
 
 export function Reviews() {
+  const reviews = business.googleReviews.slice(0, 7);
   return (
     <section id="avaliacoes" className="blueprint-grid-light bg-paper-100 py-24 text-ink-900 md:py-32">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
@@ -34,19 +40,25 @@ export function Reviews() {
           <div className="border-ink-900/15 flex items-center gap-5 border bg-paper-200/60 px-6 py-4">
             <IconGoogle className="h-8 w-8 text-arc-700" />
             <div>
-              <p className="font-display text-xl tracking-[0.02em] uppercase">
-                {business.google.rating ?? "Nota em coleta"}
+              <p className="font-display flex items-center gap-2 text-xl tracking-[0.02em] uppercase">
+                {business.google.rating}
+                <span className="flex gap-0.5" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <IconStar key={i} className="h-3.5 w-3.5 text-ember-600" />
+                  ))}
+                </span>
               </p>
-              <p className="font-mono text-[0.6rem] tracking-[0.18em] text-ink-700/70 uppercase">
-                Ficha do Google · atualizado: {business.google.lastUpdated}
+              <p className="font-mono mt-0.5 text-[0.6rem] tracking-[0.18em] text-ink-700/70 uppercase">
+                {business.google.ratingLabel} · {business.google.reviewCount} avaliações ·{" "}
+                {business.google.lastUpdated}
               </p>
             </div>
           </div>
         </div>
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {business.provisionalReviews.map((r, i) => (
-            <Reveal key={r.name} delay={i * 0.08}>
+          {reviews.map((r, i) => (
+            <Reveal key={r.name + i} delay={(i % 3) * 0.08}>
               <figure className="flex h-full flex-col border border-ink-900/15 bg-paper-200/50 p-7 transition-colors hover:bg-paper-200">
                 <div className="flex gap-1" aria-label={`${r.rating} de 5 estrelas`}>
                   {Array.from({ length: r.rating }).map((_, s) => (
@@ -58,61 +70,112 @@ export function Reviews() {
                 </blockquote>
                 <figcaption className="mt-5 flex items-baseline justify-between gap-3">
                   <span className="font-display text-lg tracking-[0.03em] uppercase">{r.name}</span>
-                  <span className="font-mono text-[0.58rem] tracking-[0.15em] text-ink-700/60 uppercase">{r.source}</span>
+                  <span className="font-mono text-[0.58rem] tracking-[0.15em] text-ink-700/60 uppercase">
+                    {r.source}
+                  </span>
                 </figcaption>
               </figure>
             </Reveal>
           ))}
+
+          <Reveal delay={0.16}>
+            <a
+              href={business.mapsReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("google_avaliacoes_tile")}
+              className="group flex h-full min-h-[14rem] flex-col justify-between border border-ember-600/50 bg-ink-900 p-7 text-paper-100 transition-colors hover:border-ember-600"
+            >
+              <p className="font-display text-2xl leading-tight tracking-[0.02em] uppercase">
+                Veja as {business.google.reviewCount} avaliações <span className="text-ember-500">completas</span>
+              </p>
+              <span className="font-mono mt-6 inline-flex items-center gap-2 text-[0.62rem] tracking-[0.2em] text-steel-300 uppercase transition-colors group-hover:text-ember-400">
+                Abrir ficha no Google <IconArrowUpRight className="h-4 w-4" />
+              </span>
+            </a>
+          </Reveal>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <p className="font-mono max-w-2xl text-[0.62rem] leading-relaxed tracking-[0.12em] text-ink-700/60 uppercase">
-            * Textos ilustrativos do protótipo — serão substituídos pelas avaliações públicas da
-            ficha oficial do Google antes da publicação (ver ASSET_AUDIT.md).
-          </p>
-          <a
-            href={business.mapsReviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track("google_avaliacoes_cta")}
-            className="btn-press border-ink-900/30 hover:border-ember-600 hover:text-ember-600 font-display inline-flex shrink-0 items-center gap-3 border px-6 py-3.5 text-base tracking-[0.06em] text-ink-900 uppercase"
-          >
-            <IconGoogle className="h-4.5 w-4.5" /> Ver avaliações no Google
-          </a>
-        </div>
+        <p className="font-mono mt-10 max-w-3xl text-[0.62rem] leading-relaxed tracking-[0.12em] text-ink-700/60 uppercase">
+          Avaliações públicas coletadas em {business.google.lastUpdated} do widget oficial de
+          avaliações (Google) exibido no site da empresa. Nota e quantidade são dados externos —
+          recoletar periodicamente (ver ASSET_AUDIT.md).
+        </p>
       </div>
     </section>
   );
 }
 
-/* ================= INSTAGRAM — EM AÇÃO ================= */
+/* ================= INSTAGRAM — EM AÇÃO =================
+ * Catálogo de publicações REAIS do perfil oficial
+ * @serralheriametaleart (URLs, legendas e datas verificadas).
+ * As imagens dos cards são referências ilustrativas do tipo de
+ * conteúdo — cada card leva à publicação original.
+ */
 
-const REEL_CARDS = [
-  { img: assets.hero.main, label: "Solda estrutural", tag: "Oficina" },
-  { img: assets.gates.sliding, label: "Portão entregue", tag: "Instalação" },
-  { img: assets.automation.motor, label: "Automação nova", tag: "Automação" },
-  { img: assets.workshop.fabrication, label: "Corte de perfis", tag: "Bastidores" },
-  { img: assets.beforeAfter.after, label: "Reforma concluída", tag: "Antes × Depois" },
-  { img: assets.gates.social, label: "Portão social", tag: "Entrega" },
+const IG_POSTS = [
+  {
+    url: "https://www.instagram.com/reel/DWd8MePjoju/",
+    type: "REEL" as const,
+    date: "29/03/2026",
+    tag: "Troca de portão",
+    caption: "Substituição rápida: sai o portão de alumínio antigo, entra o novo no mesmo vão.",
+    image: assets.instagram.reelAluminio,
+  },
+  {
+    url: "https://www.instagram.com/p/DbN3hOkDuTQ/",
+    type: "POST" as const,
+    date: "25/07/2026",
+    tag: "Antes × Depois",
+    caption: "“Bora começar a reforma desse portão” — mais uma reforma acompanhada do início ao fim.",
+    image: assets.instagram.reforma,
+  },
+  {
+    url: "https://www.instagram.com/p/DU_-_JTDqCL/",
+    type: "POST" as const,
+    date: "20/02/2026",
+    tag: "Proteção",
+    caption: "Grades de proteção em metalon instaladas no centro de SP.",
+    image: assets.instagram.gradesCentro,
+  },
+  {
+    url: "https://www.instagram.com/p/DbN25GGjosC/",
+    type: "POST" as const,
+    date: "25/07/2026",
+    tag: "Concluído",
+    caption: "Mais um serviço concluído com sucesso — parceria @samsclubbrasil.",
+    image: assets.instagram.servicoConcluido,
+  },
+  {
+    url: business.instagram.url,
+    type: "POST" as const,
+    date: "Dia a dia",
+    tag: "Bastidores",
+    caption: "Solda, corte e acabamento: o dia a dia da oficina no perfil oficial.",
+    image: assets.instagram.heroSolda,
+  },
 ];
 
 export function InstaStrip() {
   return (
     <section id="em-acao" className="overflow-hidden bg-coal-950 py-24 md:py-28">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
             <SectionTag index="12" label="Bastidores" />
-            <h2 className="font-display mt-6 text-[clamp(2.2rem,5vw,4rem)] leading-[0.96] uppercase">
-              <MaskLines
-                lines={[
-                  <span key="1" className="text-paper-100">Metal &amp; Art</span>,
-                  <span key="2" className="text-paper-100">
-                    em <em className="text-ember-500 not-italic">ação</em>.
-                  </span>,
-                ]}
-              />
-            </h2>
+            <div className="mt-6 flex flex-wrap items-end gap-x-8 gap-y-6">
+              <Logo badge className="hidden sm:inline-flex" />
+              <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] leading-[0.96] uppercase">
+                <MaskLines
+                  lines={[
+                    <span key="1" className="text-paper-100">Metal &amp; Art</span>,
+                    <span key="2" className="text-paper-100">
+                      em <em className="text-ember-500 not-italic">ação</em>.
+                    </span>,
+                  ]}
+                />
+              </h2>
+            </div>
           </div>
           <a
             href={business.instagram.url}
@@ -127,25 +190,37 @@ export function InstaStrip() {
       </div>
 
       <div className="no-scrollbar mt-12 flex snap-x gap-5 overflow-x-auto px-5 pb-2 md:px-8">
-        {REEL_CARDS.map((c, i) => (
+        {IG_POSTS.map((c, i) => (
           <a
             key={i}
-            href={business.instagram.url}
+            href={c.url}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="VER"
             onClick={() => track("instagram_card")}
-            className="group relative w-60 shrink-0 snap-start sm:w-72"
-            aria-label={`${c.label} — ver no Instagram`}
+            className="group relative w-64 shrink-0 snap-start sm:w-72"
+            aria-label={`${c.tag}: ${c.caption} — ver publicação original no Instagram`}
           >
             <div className="img-zoom border-coal-600 relative aspect-[3/4] overflow-hidden border">
-              <img src={c.img} alt={c.label} loading="lazy" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-coal-950/95 via-transparent to-transparent" />
+              <img src={c.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-coal-950/95 via-coal-950/20 to-transparent" />
+              <span
+                className={
+                  c.type === "REEL"
+                    ? "font-mono absolute top-3 left-3 bg-ember-500 px-2 py-1 text-[0.55rem] tracking-[0.22em] text-coal-950 uppercase"
+                    : "font-mono border-paper-100/30 absolute top-3 left-3 border bg-coal-950/70 px-2 py-1 text-[0.55rem] tracking-[0.22em] text-paper-100 uppercase"
+                }
+              >
+                {c.type === "REEL" ? "▶ Reel" : "Post"}
+              </span>
+              <span className="font-mono absolute top-3 right-3 bg-coal-950/70 px-2 py-1 text-[0.55rem] tracking-[0.18em] text-steel-300 uppercase">
+                {c.date}
+              </span>
               <div className="absolute right-4 bottom-4 left-4">
                 <p className="font-mono text-[0.58rem] tracking-[0.25em] text-ember-400 uppercase">{c.tag}</p>
-                <p className="font-display mt-1 text-xl tracking-[0.03em] text-paper-100 uppercase">{c.label}</p>
+                <p className="mt-1.5 text-[0.82rem] leading-snug text-paper-100">{c.caption}</p>
               </div>
-              <span className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center border border-paper-100/25 bg-coal-950/70 text-paper-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <span className="border-paper-100/25 absolute right-3 bottom-3 hidden h-9 w-9 items-center justify-center border bg-coal-950/70 text-paper-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:flex">
                 <IconInstagram className="h-4 w-4" />
               </span>
             </div>
@@ -153,8 +228,10 @@ export function InstaStrip() {
         ))}
       </div>
 
-      <p className="font-mono mt-6 px-5 text-[0.6rem] tracking-[0.18em] text-steel-500 uppercase md:px-8">
-        Conteúdo original publicado em instagram.com/serralheriametaleart — os cards levam ao perfil oficial.
+      <p className="font-mono mt-6 px-5 text-[0.6rem] leading-relaxed tracking-[0.18em] text-steel-500 uppercase md:px-8">
+        Publicações reais do perfil oficial — cada card abre o post original no Instagram.
+        Imagens exibidas aqui são referências ilustrativas: solicitar os arquivos originais em HD
+        ao cliente antes da publicação (ver ASSET_SOURCES.md).
       </p>
     </section>
   );
@@ -185,7 +262,7 @@ export function Location() {
                 <p className="font-mono text-[0.62rem] tracking-[0.25em] text-ink-700/60 uppercase">Oficina</p>
                 <p className="mt-2 flex items-start gap-3 text-lg font-medium">
                   <IconPin className="mt-1 h-5 w-5 shrink-0 text-ember-600" />
-                  {business.address.street} — {business.address.region},{" "}
+                  {business.address.street} — {business.address.neighborhood},{" "}
                   {business.address.city}/{business.address.state} · CEP {business.address.zip}
                 </p>
               </div>
@@ -240,7 +317,7 @@ export function Location() {
 
           <div className="border border-ink-900/20 relative min-h-[24rem] overflow-hidden bg-paper-200">
             <iframe
-              title="Mapa — Metal & Art Serralheria, Rua Serra do Ouro, 267, São Paulo"
+              title="Mapa — Metal & Art Serralheria, Rua Serra do Ouro Branco, 267, Vila Carmosina, São Paulo"
               src={business.mapsEmbedUrl}
               className="absolute inset-0 h-full w-full border-0 grayscale-[35%]"
               loading="lazy"
@@ -248,7 +325,7 @@ export function Location() {
               allowFullScreen
             />
             <span className="font-mono absolute bottom-3 left-3 bg-ink-900/90 px-2.5 py-1 text-[0.6rem] tracking-[0.2em] text-paper-100 uppercase">
-              Rua Serra do Ouro, 267 — SP
+              R. Serra do Ouro Branco, 267 — Vila Carmosina, SP
             </span>
           </div>
         </div>

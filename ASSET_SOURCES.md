@@ -1,68 +1,95 @@
-# ASSET_SOURCES.md — Registro de Origem dos Assets
+# ASSET_SOURCES — Metal & Art Serralheria
 
-Site: **Metal & Art Serralheria** — protótipo premium.
-Todo asset relevante está centralizado em `src/config/assets.ts`.
-
-> **Regra geral:** as imagens deste protótipo são **assets temporários gerados
-> para demonstração** (Prioridade 5 do briefing). Antes da publicação, devem
-> ser substituídas por materiais oficiais da empresa (Prioridades 1–4),
-> validando direitos de uso. **Nenhum conteúdo do Instagram foi baixado ou
-> reutilizado** — apenas há links para o perfil oficial.
+Registro de origem de todos os assets e dados externos usados no site.
+Coleta da pesquisa: **22/08/2026**.
 
 ---
 
-## Imagens
+## 1. LOGOTIPO
 
-| Arquivo (chave em assets.ts) | URL atual | Origem | Categoria | Uso | Situação |
-|---|---|---|---|---|---|
-| `hero.main` | image.qwenlm.ai/.../6525dc2f | Asset temporário gerado | Soldagem/faíscas | Home > Hero; Processo (etapa SOLDA) | **Substituir por vídeo/foto real de fabricação** (solicitar em HD) |
-| `gates.sliding` | image.qwenlm.ai/.../7860c4b9 | Asset temporário gerado | Portão deslizante | Projetos, Serviços, Processo (instalação), Espaços (condomínios) | Substituir por foto real de portão entregue |
-| `gates.social` | image.qwenlm.ai/.../a257dded | Asset temporário gerado | Portão social | Projetos, Serviços (portões/fechaduras) | Substituir por foto real |
-| `automation.motor` | image.qwenlm.ai/.../7fa87b1e | Asset temporário gerado | Motor/cremalheira | Projetos, Serviços (automação), Sobre | Substituir por foto real de automação instalada |
-| `railings.handrail` | image.qwenlm.ai/.../7d0f3676 | Asset temporário gerado | Corrimão/guarda-corpo | Projetos, Serviços (corrimãos) | Substituir por foto real |
-| `grids.window` | image.qwenlm.ai/.../cd60231b | Asset temporário gerado | Grade de proteção | Projetos, Serviços (grades), capítulos | Substituir por foto real |
-| `rollingDoors.storefront` | image.qwenlm.ai/.../82af2131 | Asset temporário gerado | Porta de enrolar | Projetos, Serviços, Espaços (comércios) | Substituir por foto real |
-| `beforeAfter.before` | image.qwenlm.ai/.../0d766918 | Asset temporário gerado | Portão antigo (antes) | Home > Antes/Depois, case de reforma | **Substituir por par ANTES real** (solicitar original) |
-| `beforeAfter.after` | image.qwenlm.ai/.../884774a0 | Asset temporário gerado | Portão reformado (depois) | Home > Antes/Depois, projetos p3/p9, Espaços (residências) | **Substituir por par DEPOIS real** (mesma obra do "antes") |
-| `workshop.fabrication` | image.qwenlm.ai/.../011a3085 | Asset temporário gerado | Oficina/corte | Processo, Sobre, Projetos (estruturas), Espaços (empresas) | Substituir por foto real da oficina/equipe |
+- **Arquivo:** nenhum arquivo oficial disponível publicamente em resolução adequada.
+- **Origem pesquisada:** site oficial, Instagram e ficha do Google.
+- **Situação:** o site usa **reprodução tipográfica fiel ao estilo da marca** (wordmark
+  condensado em caixa alta, "&" em laranja de solda, "SERRALHERIA" espaçado),
+  desenhada em código em `src/components/ui.tsx` (componente `Logo`).
+- **Ação:** `>> SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE <<`
+  Ao receber, salvar em `public/client-assets/logo/` nas variações
+  `logo-original`, `logo-light`, `logo-dark`, `logo-symbol` e substituir o componente.
 
-## Logo
+## 2. IMAGENS DE REFERÊNCIA (protótipo)
 
-| Item | Situação |
-|---|---|
-| `logo.original` | **SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE.** Não foi possível obter arquivo oficial em resolução adequada. O site usa marca tipográfica SVG própria ("METAL & ART", em `src/components/ui.tsx`) como fallback — não é a marca oficial. |
+Todas as imagens do site são **referências ilustrativas** do tipo de trabalho
+que a empresa publica — NÃO são fotos reais da Metal & Art.
+Chaves centralizadas em `src/config/assets.ts`.
 
-## Vídeos
+| Chave | Categoria | Uso | Situação |
+|---|---|---|---|
+| `hero.main` | Soldagem/faíscas | Hero, cards | Substituir por foto/vídeo real da oficina |
+| `gates.sliding` | Portão deslizante | Portfólio, serviços | Substituir por foto real (Instagram) |
+| `gates.social` | Portão social | Portfólio, serviços | Substituir por foto real (Instagram) |
+| `automation.motor` | Motor/automação | Portfólio, serviços | Substituir por foto real (Instagram) |
+| `railings.handrail` | Corrimão | Portfólio, serviços | Substituir por foto real (Instagram) |
+| `grids.window` | Grade de proteção | Portfólio, serviços | Substituir por foto real (Instagram) |
+| `rollingDoors.storefront` | Porta de enrolar | Portfólio, serviços | Substituir por foto real (Instagram) |
+| `beforeAfter.before/after` | Reforma antes/depois | Slider "Veja a transformação" | Substituir por par real do mesmo ângulo (Instagram) |
+| `workshop.fabrication` | Oficina/bastidores | Institucional, cards | Substituir por foto real da oficina |
 
-| Item | Situação |
-|---|---|
-| `video.hero` | **SOLICITAR VÍDEOS REAIS** (fabricação, faíscas, portão funcionando, automação) para o hero e para cases. O protótipo usa fotografia estática. |
+## 3. INSTAGRAM (conteúdo público catalogado)
 
-## Avaliações (Google)
+Fonte: perfil oficial **@serralheriametaleart** (legendas e datas verificadas
+em busca pública). Os cards da seção "Metal & Art em ação"
+(`src/components/Social.tsx`) **linkam para as publicações originais**:
 
-- Nota/quantidade: **não exibidas como dado congelado** — campo `business.google.rating`
-  está `null` até coleta validada na ficha oficial (ver `src/config/business.ts`,
-  chave `google` com `lastUpdated`).
-- Textos exibidos: **ilustrativos**, marcados com `provisional: true` e com nota
-  visível na seção. Substituir por avaliações públicas reais antes de publicar.
+| Publicação | Tipo | Data | Conteúdo |
+|---|---|---|---|
+| `instagram.com/reel/DWd8MePjoju/` | Reel | 29/03/2026 | Substituição rápida de portão de alumínio |
+| `instagram.com/p/DbN3hOkDuTQ/` | Post | 25/07/2026 | Reforma de portão (antes × depois) |
+| `instagram.com/p/DU_-_JTDqCL/` | Post | 20/02/2026 | Grades de proteção em metalon — centro de SP |
+| `instagram.com/p/DbN25GGjosC/` | Post | 25/07/2026 | Serviço concluído — parceria @samsclubbrasil |
+| `instagram.com/serralheriametaleart/` | Perfil | — | Bastidores e portfólio contínuo |
 
-## Mapa / Google Business
+- **Uso:** Home > "Metal & Art em ação".
+- **Situação:** conteúdo público; cards exibem imagens de referência e abrem o
+  post original. **Nenhum arquivo foi baixado/reutilizado fora da plataforma.**
+- **Ação:** `>> SOLICITAR ARQUIVOS ORIGINAIS EM HD AO CLIENTE <<` para exibir
+  as fotos/vídeos reais diretamente no site, com autorização de uso.
+- Não são exibidos comentários, curtidas ou elementos de interface do Instagram.
 
-- Embed: `https://www.google.com/maps?q=…&output=embed` com o endereço oficial
-  validado no site (Rua Serra do Ouro, 267 — São Paulo/SP, CEP 08270-330).
-- Botão de rota e link de avaliações apontam para a busca da ficha no Google.
+## 4. GOOGLE (avaliações e ficha)
 
-## Instagram
+- **Origem:** widget oficial de avaliações (Google/Trustindex) exibido **no site
+  da própria empresa** (metaleartserralheria.com.br), coletado em **22/08/2026**.
+- **Dados:** classificação **EXCELENTE · 5,0 · 41 avaliações**.
+- **Avaliações exibidas (7):** Rosangela Fracaro, Juliana Menezes, Vinicius
+  Lopss, Viviane Trudes, Caio Brandao, Jackeline Rocha, mii — textos conforme
+  publicados no widget.
+- **Uso:** Home > "Quem contrata, recomenda" + Schema.org AggregateRating.
+- **Situação:** dados externos configuráveis em `src/config/business.ts`
+  (`google.rating`, `google.reviewCount`, `google.lastUpdated`).
+- **Ação:** recoletar a ficha do Google antes da publicação e periodicamente;
+  nunca congelar nota/quantidade sem registrar a data.
+- **Endereço validado pelo mapa incorporado no site oficial:**
+  R. Serra do Ouro Branco, 267 — Vila Carmosina, São Paulo/SP, 08270-330
+  (o rodapé do site abrevia para "Rua Serra do Ouro, 267").
 
-- Nenhum asset baixado. Todos os botões/cards da seção "Metal & Art em Ação"
-  linkam para `https://www.instagram.com/serralheriametaleart/`.
-- Antes de publicar usando fotos do perfil: **registrar autorização de uso** e
-  baixar os originais em alta pela própria empresa.
+## 5. SITE ANTERIOR (conteúdo institucional reaproveitado)
 
-## Dados comerciais validados
+- Slogan oficial: "Cuidando da sua estrutura com precisão."
+- Texto institucional ("Sobre Nós") e lista de serviços — preservados e
+  reescritos em nível premium em `src/data/services.ts` e páginas.
+- Serviços confirmados no site oficial: reformas e reparos em portões;
+  automações e fechaduras elétricas; corrimão e guarda-corpo; grades de
+  proteção para janelas e portas; portão social; troca de mola de porta de
+  enrolar.
 
-- WhatsApp/telefone: **(11) 94937-1578** (site oficial + Facebook oficial).
-- E-mail: **serralheria.metaleart@gmail.com** (site oficial).
-- Endereço: **Rua Serra do Ouro, 267 — São Paulo/SP, CEP 08270-330** (site oficial).
-  Nota: alguns materiais citam "Rua Serra do Ouro Branco" — confirmar o nome
-  completo do logradouro com o cliente.
+## 6. VÍDEOS
+
+- **Situação:** nenhum vídeo real disponível no protótipo.
+- **Ação:** `>> SOLICITAR VÍDEOS REAIS (fabricação, faíscas, automação,
+  instalação) <<` para Hero e cases (`assets.video` em `src/config/assets.ts`).
+
+---
+
+**Direitos:** conteúdo publicamente visível não é tratado como liberado para
+reutilização comercial. Antes da publicação definitiva, validar com o cliente
+a autorização de uso de cada foto/vídeo/avaliação exibida diretamente no site.

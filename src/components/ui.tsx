@@ -1,7 +1,18 @@
 import { useEffect, useRef, useState, type ReactNode, type SVGProps } from "react";
 import { cn, isFinePointer, prefersReduced } from "../lib/motion";
 
-/* ============ marca / logo ============ */
+/* ============ marca / logo ============ *
+ *
+ * Reprodução tipográfica fiel ao estilo da identidade oficial da
+ * Metal & Art (wordmark condensado em caixa alta com o "&" em
+ * destaque e a palavra SERRALHERIA espaçada abaixo). Desenhada em
+ * código para manter nitidez em qualquer tamanho.
+ *
+ * >> SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE <<
+ * Ao receber o arquivo oficial, salvá-lo em public/client-assets/logo/
+ * (logo-original / logo-light / logo-dark / logo-symbol) e substituir
+ * este componente — ver CLIENT_REPLACEMENT_GUIDE.md.
+ */
 
 export function SparkMark({ className }: { className?: string }) {
   return (
@@ -10,6 +21,11 @@ export function SparkMark({ className }: { className?: string }) {
         d="M16 2l2.7 11.3L30 16l-11.3 2.7L16 30l-2.7-11.3L2 16l11.3-2.7z"
         fill="currentColor"
       />
+      <path
+        d="M25.5 2.5l.8 3.2 3.2.8-3.2.8-.8 3.2-.8-3.2-3.2-.8 3.2-.8z"
+        fill="currentColor"
+        opacity="0.5"
+      />
     </svg>
   );
 }
@@ -17,24 +33,55 @@ export function SparkMark({ className }: { className?: string }) {
 export function Logo({
   className,
   stacked = false,
+  badge = false,
 }: {
   className?: string;
   stacked?: boolean;
+  badge?: boolean;
 }) {
+  // Variação "selo" — remete ao avatar oficial do perfil no Instagram
+  if (badge) {
+    return (
+      <span
+        className={cn(
+          "inline-flex w-28 flex-col items-center gap-2 border border-paper-100/20 bg-coal-900 px-4 py-5 text-center",
+          className
+        )}
+      >
+        <SparkMark className="h-7 w-7 text-ember-500" />
+        <span className="font-display text-[0.95rem] leading-[1.02] tracking-[0.05em] text-paper-100 uppercase">
+          Metal <span className="text-ember-500">&amp;</span> Art
+        </span>
+        <span className="font-mono text-[0.45rem] tracking-[0.38em] text-steel-400 uppercase">
+          Serralheria
+        </span>
+      </span>
+    );
+  }
+
   return (
     <span
       className={cn(
         "inline-flex select-none items-center gap-2.5 text-paper-100",
-        stacked ? "flex-col items-start gap-1" : "",
+        stacked ? "flex-col items-start gap-1.5" : "",
         className
       )}
     >
       <SparkMark className="h-6 w-6 shrink-0 text-ember-500" />
       <span className="leading-none">
-        <span className="font-display block text-[1.15rem] tracking-[0.08em] uppercase">
-          Metal<span className="text-ember-500">&nbsp;&amp;&nbsp;</span>Art
+        <span className="font-display block text-[1.22rem] leading-none tracking-[0.045em] uppercase">
+          Metal
+          <span className="relative mx-[0.12em] inline-block text-[1.05em] text-ember-500">
+            &amp;
+            <SparkMark className="absolute -top-[0.45em] -right-[0.55em] h-[0.36em] w-[0.36em] text-weld-400" />
+          </span>
+          Art
         </span>
-        <span className="font-mono mt-0.5 block text-[0.55rem] tracking-[0.42em] text-steel-400 uppercase">
+        <span
+          className="mt-[0.34em] block h-[2px] w-full bg-gradient-to-r from-ember-600 via-ember-500/55 to-transparent"
+          aria-hidden="true"
+        />
+        <span className="font-mono mt-[0.32em] block text-[0.55rem] tracking-[0.42em] text-steel-400 uppercase">
           Serralheria
         </span>
       </span>

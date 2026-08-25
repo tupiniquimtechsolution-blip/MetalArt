@@ -1,55 +1,51 @@
-# ASSET_AUDIT.md — Auditoria de Assets e Informações
+# ASSET_AUDIT — Metal & Art Serralheria
 
-Projeto: website premium **Metal & Art Serralheria** (protótipo).
+Auditoria de assets — coleta em **22/08/2026**.
 
 ## Quantidades
 
-| Fonte | Encontrado | Utilizado |
-|---|---|---|
-| Instagram (@serralheriametaleart) | perfil oficial localizado | **0 assets baixados** — apenas links para o perfil (direitos/autorização pendentes) |
-| Google Business/Maps | ficha correspondente (endereço/telefone batem com o site oficial) | mapa embed + links de rota/avaliações |
-| Site oficial (metaleartserralheria.com.br) | telefone, e-mail, endereço, serviços citados | dados comerciais validados |
-| Facebook oficial | confirmação de WhatsApp e serviços | validação cruzada |
-| Placeholders/gerados | — | **10 imagens temporárias** (hero, portões, automação, corrimão, grades, porta de enrolar, antes/depois ×2, oficina, portão social) |
+| Fonte | Encontrado | Utilizado no site | Observação |
+|---|---|---|---|
+| Imagens reais da empresa (Instagram) | ~20+ publicações visíveis | **0 arquivos baixados** | 5 publicações **catalogadas com link para o original** |
+| Imagens reais (Google Maps / ficha) | fotos públicas na ficha | 0 | Endereço validado pelo mapa incorporado |
+| Site oficial (metaleartserralheria.com.br) | 7 imagens + textos | textos/slogan/serviços reaproveitados | imagens do site não reutilizadas |
+| Avaliações Google (widget oficial no site) | 41 avaliações · EXCELENTE · 5,0 | 7 exibidas + nota/contagem | coletadas em 22/08/2026 |
+| Imagens de referência (protótipo) | 10 geradas | 10 | placeholders ilustrativos |
+| Vídeos reais | reels públicos no Instagram | 0 | solicitar ao cliente |
+| Logotipo | presente no site/Instagram (sem arquivo acessível) | reprodução tipográfica fiel em código | solicitar vetor original |
 
-## Materiais que devem ser solicitados em HD (antes de publicar)
+## Placeholders restantes
 
-1. **Vídeo real de fabricação/soldagem com faíscas** — para o hero (substitui foto).
-2. **Vídeos de portão funcionando / automação** — para cases e seção "Em ação".
-3. **Pares ANTES × DEPOIS reais da mesma obra** — a seção de transformação só
-   deve usar pares verdadeiros (jamais fabricar falso antes/depois).
-4. **Fotos reais por categoria**: portões (deslizante, basculante, social),
-   automação/motores, grades, corrimãos, guarda-corpos, portas de enrolar,
-   estruturas e oficina/equipe.
-5. **Logotipo vetorial/original** — atualmente usando marca tipográfica de fallback.
-6. **Fachada/oficina** para a seção de localização (foto pública da ficha do
-   Google pode ser usada somente após confirmar autoria/direito).
+**Todas as fotografias** do site são referências ilustrativas geradas para o
+protótipo (banco de imagens do ambiente), mapeadas em `src/config/assets.ts`.
+Nenhuma obra de terceiro foi atribuída à empresa; nenhum antes/depois falso é
+apresentado como real (o slider usa par ilustrativo sinalizado como referência).
 
-## Informações que precisam ser confirmadas com o cliente
+## Materiais a solicitar em HD ao cliente (checklist)
 
-- [ ] Nome completo do logradouro: "Rua Serra do Ouro" × "Rua Serra do Ouro Branco".
-- [ ] Horários oficiais de atendimento (hoje: "consulte pelo WhatsApp").
-- [ ] Raio real de atendimento (hoje: Zona Leste + Grande SP sob consulta).
-- [ ] Nota e quantidade de avaliações na ficha do Google (com data de coleta) —
-      campos prontos em `business.google` com `lastUpdated`.
-- [ ] Avaliações reais para substituir os 3 textos ilustrativos (marcados
-      `provisional: true` e sinalizados na interface).
-- [ ] Ano de fundação / equipe / números da empresa — **não inventados**; os
-      campos existem em `business.ts` como `null` até confirmação.
-- [ ] Autorização formal para reutilizar fotos publicadas no Instagram e na
-      ficha do Google (fotos de terceiros no Maps não são automaticamente liberadas).
+1. [ ] **Logotipo vetorial/original** (variações clara, escura e símbolo)
+2. [ ] **Vídeo real** de fabricação/solda com faíscas (para o Hero)
+3. [ ] Fotos reais em HD: portão deslizante, portão social, automação/motor,
+      corrimão, grade de proteção, porta de enrolar, oficina/equipe
+4. [ ] Par **antes/depois real do mesmo ângulo** (reforma de portão — ex.:
+      publicação de 25/07/2026)
+5. [ ] Reels para cases visuais (automação funcionando, reforma concluída)
+6. [ ] Fotos da fachada/oficina (Google Maps ou próprias)
+7. [ ] Autorização por escrito para exibir avaliações e fotos no site
 
-## Imagens de baixa resolução / atenção
+## Informações a confirmar com o cliente
 
-- As imagens geradas do protótipo têm qualidade suficiente para layout, mas
-  não representam obras reais — **não publicar sem substituição**.
-- Registro de origem de cada asset: `ASSET_SOURCES.md`.
-- Guia de troca caminho a caminho: `CLIENT_REPLACEMENT_GUIDE.md`.
+- [ ] Horários oficiais de atendimento (hoje: "consulte pelo WhatsApp")
+- [ ] Raio exato de atendimento (hoje: Zona Leste + Centro SP confirmados)
+- [ ] Recolher nota/contagem atuais da ficha do Google (última coleta: 22/08/2026)
+- [ ] Endereço: nome completo do logradouro confirmado pelo mapa oficial
+      (Rua Serra do Ouro Branco, 267 — Vila Carmosina); o rodapé do site
+      atual abrevia para "Rua Serra do Ouro"
+- [ ] E-mail `serralheria.metaleart@gmail.com` ainda ativo
 
-## Conformidade
+## Riscos de direitos registrados
 
-- Nenhum nome de cliente foi inventado nos projetos.
-- Nenhum depoimento apresentado como real sem sinalização.
-- Nenhuma nota/quantidade do Google hardcoded sem data de coleta.
-- Schema.org sem `AggregateRating` (sem dado validado).
-- Conteúdo de terceiros: apenas links externos; nada embutido sem origem.
+- Avaliações exibidas foram coletadas do widget publicado no **próprio site da
+  empresa**; ainda assim, recomendar validação antes da publicação definitiva.
+- Nenhum arquivo do Instagram foi baixado; os cards linkam para o conteúdo
+  original na plataforma (sem UI, curtidas ou comentários do app).
