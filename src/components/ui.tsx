@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode, type SVGProps } from "react";
 import { cn, isFinePointer, prefersReduced } from "../lib/motion";
+import { assets as assetsCfg } from "../config/assets";
+
+const assetsLogo = assetsCfg.logo;
 
 /* ============ marca / logo ============ *
  *
@@ -39,6 +42,24 @@ export function Logo({
   stacked?: boolean;
   badge?: boolean;
 }) {
+  // Quando o arquivo oficial existir (public/client-assets/logo/),
+  // ele assume o lugar da reprodução tipográfica automaticamente.
+  const [broken, setBroken] = useState(false);
+  const official = !broken && (assetsLogo?.original ?? null);
+
+  if (official) {
+    return (
+      <span className={cn("inline-flex items-center", className)}>
+        <img
+          src={official}
+          alt="Metal & Art Serralheria"
+          onError={() => setBroken(true)}
+          className={badge ? "h-20 w-auto" : "h-11 w-auto"}
+        />
+      </span>
+    );
+  }
+
   // Variação "selo" — remete ao avatar oficial do perfil no Instagram
   if (badge) {
     return (

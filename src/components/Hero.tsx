@@ -5,6 +5,7 @@ import { business } from "../config/business";
 import {
   MaskLines,
   SparkField,
+  prefersReduced,
   scrollToEl,
   track,
   useParallax,
@@ -12,6 +13,46 @@ import {
   waLink,
 } from "../lib/motion";
 import { IconArrowRight, IconArrowUpRight, Magnetic, Marquee } from "./ui";
+
+/** Slideshow com as mídias reais do site oficial (fade + zoom lento) */
+const HERO_SLIDES = [
+  {
+    src: assets.official.heroSparks,
+    alt: "Produção Metal & Art — corte de metal com esmerilhadeira e faíscas",
+  },
+  {
+    src: assets.official.heroWorkshop,
+    alt: "Oficina Metal & Art — estrutura metálica em fabricação",
+  },
+];
+
+function HeroSlideshow() {
+  const reduced = prefersReduced();
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    if (reduced || HERO_SLIDES.length < 2) return;
+    const t = window.setInterval(
+      () => setIdx((i) => (i + 1) % HERO_SLIDES.length),
+      5000
+    );
+    return () => window.clearInterval(t);
+  }, [reduced]);
+  return (
+    <div className="absolute inset-0">
+      {HERO_SLIDES.map((s, i) => (
+        <img
+          key={s.src}
+          src={s.src}
+          alt={i === idx ? s.alt : ""}
+          aria-hidden={i !== idx}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            i === idx ? "kenburns opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function Hero() {
   const imgRef = useParallax<HTMLDivElement>(55);
@@ -30,13 +71,10 @@ export function Hero() {
         className="relative flex min-h-svh flex-col overflow-hidden bg-coal-950"
         aria-label="Apresentação"
       >
-        {/* camadas de fundo com parallax */}
+        {/* camadas de fundo com parallax + slideshow oficial do site
+            (mídias reais do cliente — fade + ken burns como no original) */}
         <div ref={imgRef} className="absolute inset-[-12%] will-change-transform">
-          <img
-            src={assets.hero.main}
-            alt="Soldador da Metal & Art trabalhando em estrutura metálica com faíscas"
-            className="h-full w-full object-cover object-center"
-          />
+          <HeroSlideshow />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-coal-950 via-coal-950/72 to-coal-950/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-coal-950 via-transparent to-coal-950/70" />

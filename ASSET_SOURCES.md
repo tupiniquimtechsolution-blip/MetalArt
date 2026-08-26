@@ -16,9 +16,22 @@ Coleta da pesquisa: **22/08/2026**.
   Ao receber, salvar em `public/client-assets/logo/` nas variações
   `logo-original`, `logo-light`, `logo-dark`, `logo-symbol` e substituir o componente.
 
+## 1.5 MÍDIAS OFICIAIS DO SITE DO CLIENTE (em uso)
+
+Hotlink direto do servidor oficial (metaleartserralheria.com.br), coletadas
+do HTML público em **22/08/2026**. Antes da publicação definitiva, baixar e
+salvar em `public/client-assets/` (ver CLIENT_REPLACEMENT_GUIDE.md).
+
+| Chave em `assets.ts` | Arquivo original | Uso no site |
+|---|---|---|
+| `official.heroSparks` | `/wp-content/uploads/2026/02/locksmith-...-angle-grinder-scaled-1.jpeg` | Hero (slideshow, slide 1) + card "Bastidores" |
+| `official.heroWorkshop` | `/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-22-at-21.05.02.jpeg` | Hero (slideshow, slide 2) |
+| `official.aboutImage` | `/wp-content/uploads/2026/02/ChatGPT-Image-22-de-fev.-de-2026-21_44_59-683x1024.png` | Seção "Sob medida" (imagem principal) |
+| `official.logoUrl` | a localizar na biblioteca de mídia do site | Logotipo (assim que identificado) |
+
 ## 2. IMAGENS DE REFERÊNCIA (protótipo)
 
-Todas as imagens do site são **referências ilustrativas** do tipo de trabalho
+As **demais** imagens do site são referências ilustrativas do tipo de trabalho
 que a empresa publica — NÃO são fotos reais da Metal & Art.
 Chaves centralizadas em `src/config/assets.ts`.
 

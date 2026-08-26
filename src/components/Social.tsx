@@ -113,10 +113,18 @@ export function Reviews() {
  * conteúdo — cada card leva à publicação original.
  */
 
-const IG_POSTS = [
+const IG_POSTS: {
+  url: string;
+  type: "REEL" | "POST";
+  date: string;
+  tag: string;
+  caption: string;
+  image: string;
+  real?: boolean;
+}[] = [
   {
     url: "https://www.instagram.com/reel/DWd8MePjoju/",
-    type: "REEL" as const,
+    type: "REEL",
     date: "29/03/2026",
     tag: "Troca de portão",
     caption: "Substituição rápida: sai o portão de alumínio antigo, entra o novo no mesmo vão.",
@@ -124,7 +132,7 @@ const IG_POSTS = [
   },
   {
     url: "https://www.instagram.com/p/DbN3hOkDuTQ/",
-    type: "POST" as const,
+    type: "POST",
     date: "25/07/2026",
     tag: "Antes × Depois",
     caption: "“Bora começar a reforma desse portão” — mais uma reforma acompanhada do início ao fim.",
@@ -132,7 +140,7 @@ const IG_POSTS = [
   },
   {
     url: "https://www.instagram.com/p/DU_-_JTDqCL/",
-    type: "POST" as const,
+    type: "POST",
     date: "20/02/2026",
     tag: "Proteção",
     caption: "Grades de proteção em metalon instaladas no centro de SP.",
@@ -140,7 +148,7 @@ const IG_POSTS = [
   },
   {
     url: "https://www.instagram.com/p/DbN25GGjosC/",
-    type: "POST" as const,
+    type: "POST",
     date: "25/07/2026",
     tag: "Concluído",
     caption: "Mais um serviço concluído com sucesso — parceria @samsclubbrasil.",
@@ -148,11 +156,12 @@ const IG_POSTS = [
   },
   {
     url: business.instagram.url,
-    type: "POST" as const,
+    type: "POST",
     date: "Dia a dia",
     tag: "Bastidores",
-    caption: "Solda, corte e acabamento: o dia a dia da oficina no perfil oficial.",
+    caption: "Produção com faíscas: mídia real do site oficial da Metal & Art.",
     image: assets.instagram.heroSolda,
+    real: true,
   },
 ];
 
@@ -213,6 +222,11 @@ export function InstaStrip() {
               >
                 {c.type === "REEL" ? "▶ Reel" : "Post"}
               </span>
+              {c.real && (
+                <span className="font-mono absolute top-9 left-3 bg-weld-400 px-2 py-1 text-[0.55rem] tracking-[0.22em] text-coal-950 uppercase">
+                  Mídia oficial
+                </span>
+              )}
               <span className="font-mono absolute top-3 right-3 bg-coal-950/70 px-2 py-1 text-[0.55rem] tracking-[0.18em] text-steel-300 uppercase">
                 {c.date}
               </span>

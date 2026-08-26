@@ -4,77 +4,83 @@
  * ============================================================
  *  Nenhum asset importante deve ficar espalhado pelos componentes.
  *
- *  SITUAÇÃO ATUAL (protótipo):
- *  As imagens abaixo são ASSETS DE REFERÊNCIA gerados para o
- *  protótipo (banco de imagens do ambiente). Elas representam o
- *  TIPO de trabalho publicado no Instagram @serralheriametaleart,
- *  mas NÃO são fotos reais da empresa.
- *
- *  >> ANTES DA PUBLICAÇÃO: substituir cada URL pela foto/vídeo
- *  real correspondente (Instagram oficial, ficha do Google ou
- *  arquivos HD solicitados ao cliente). Ver ASSET_SOURCES.md,
- *  ASSET_AUDIT.md e CLIENT_REPLACEMENT_GUIDE.md.
+ *  FONTES (ver ASSET_SOURCES.md e ASSET_AUDIT.md):
+ *  — `official.*`: mídias reais coletadas do site oficial do cliente
+ *    (metaleartserralheria.com.br). Hotlink direto do servidor do
+ *    cliente — antes de publicar, baixar e salvar em
+ *    public/client-assets/ e trocar as URLs.
+ *  — demais chaves: referências ilustrativas do protótipo.
+ *    >> SOLICITAR ARQUIVOS ORIGINAIS EM HD AO CLIENTE <<
  * ============================================================
  */
 
-const IMG = "https://image.qwenlm.ai/generated-images";
+const SITE = "https://metaleartserralheria.com.br/wp-content/uploads/2026/02";
 
 export const assets = {
+  /** Mídias REAIS do site oficial do cliente (coletadas em 22/08/2026) */
+  official: {
+    /** Slide 1 do slideshow oficial — esmerilhadeira/faíscas na produção */
+    heroSparks: `${SITE}/locksmith-in-special-clothes-and-goggles-works-in-production-metal-processing-with-angle-grinder-scaled-1.jpeg`,
+    /** Slide 2 do slideshow oficial — imagem da oficina/equipe */
+    heroWorkshop: `${SITE}/WhatsApp-Image-2026-02-22-at-21.05.02.jpeg`,
+    /** Imagem institucional da seção "Sobre Nós" do site oficial */
+    aboutImage: `${SITE}/ChatGPT-Image-22-de-fev.-de-2026-21_44_59-683x1024.png`,
+    /**
+     * LOGO: o arquivo original está no servidor do cliente (site e
+     * Instagram). >> SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE <<
+     * Assim que enviado, salvar em public/client-assets/logo/ e apontar
+     * `logo.original` abaixo — o componente Logo já suporta a troca.
+     */
+    logoUrl: null as string | null,
+  },
+
   hero: {
-    // Soldagem com faíscas na oficina — imagem principal do hero
-    main: `${IMG}/fb164cb3-f703-430e-9983-de28a38d4b81/_result.png`,
+    // Faíscas de solda — referência ilustrativa (protótipo)
+    main: "https://image.qwenlm.ai/generated-images/fb164cb3-f703-430e-9983-de28a38d4b81/_result.png",
   },
   gates: {
-    sliding: `${IMG}/0f4ef4e4-20f9-4c76-989b-a8fd08492ca9/_result.png`,
-    social: `${IMG}/3c1834e0-8f9d-455e-aa64-7f164801a3a3/_result.png`,
+    sliding: "https://image.qwenlm.ai/generated-images/0f4ef4e4-20f9-4c76-989b-a8fd08492ca9/_result.png",
+    social: "https://image.qwenlm.ai/generated-images/3c1834e0-8f9d-455e-aa64-7f164801a3a3/_result.png",
   },
   automation: {
-    motor: `${IMG}/13d1e4b9-04f2-46c1-a3fa-9811652dfa13/_result.png`,
+    motor: "https://image.qwenlm.ai/generated-images/13d1e4b9-04f2-46c1-a3fa-9811652dfa13/_result.png",
   },
   railings: {
-    handrail: `${IMG}/b69877c7-3081-4454-9a3d-565a2d39a5fc/_result.png`,
+    handrail: "https://image.qwenlm.ai/generated-images/b69877c7-3081-4454-9a3d-565a2d39a5fc/_result.png",
   },
   grids: {
-    window: `${IMG}/a2c46e0b-6030-477f-b971-820fc6ddb6df/_result.png`,
+    window: "https://image.qwenlm.ai/generated-images/a2c46e0b-6030-477f-b971-820fc6ddb6df/_result.png",
   },
   rollingDoors: {
-    storefront: `${IMG}/ed4ca758-8f33-429f-acc0-8c1f12d5cea4/_result.png`,
+    storefront: "https://image.qwenlm.ai/generated-images/ed4ca758-8f33-429f-acc0-8c1f12d5cea4/_result.png",
   },
   beforeAfter: {
-    before: `${IMG}/35f5a934-1f72-422f-9853-f54ce1b46d36/_result.png`,
-    after: `${IMG}/352da9f7-728a-494c-b986-b200b532fdaf/_result.png`,
+    // Par ilustrativo (mesmo enquadramento) — substituir por
+    // antes/depois REAL do mesmo ângulo (ex.: publicação de 25/07/2026)
+    before: "https://image.qwenlm.ai/generated-images/35f5a934-1f72-422f-9853-f54ce1b46d36/_result.png",
+    after: "https://image.qwenlm.ai/generated-images/352da9f7-728a-494c-b986-b200b532fdaf/_result.png",
   },
   workshop: {
-    fabrication: `${IMG}/d42aa287-8460-4111-acd4-be7eda686a3a/_result.png`,
+    fabrication: "https://image.qwenlm.ai/generated-images/d42aa287-8460-4111-acd4-be7eda686a3a/_result.png",
   },
 
-  /**
-   * Mapeamento ilustrativo usado pelos cards "Metal & Art em ação".
-   * Cada card aponta para a publicação REAL no perfil oficial;
-   * a imagem exibida é apenas referência do tipo de conteúdo.
-   */
+  /** Imagens de referência para os cards que linkam posts reais do Instagram */
   instagram: {
-    reelAluminio: `${IMG}/0f4ef4e4-20f9-4c76-989b-a8fd08492ca9/_result.png`,
-    reforma: `${IMG}/35f5a934-1f72-422f-9853-f54ce1b46d36/_result.png`,
-    gradesCentro: `${IMG}/a2c46e0b-6030-477f-b971-820fc6ddb6df/_result.png`,
-    servicoConcluido: `${IMG}/d42aa287-8460-4111-acd4-be7eda686a3a/_result.png`,
-    heroSolda: `${IMG}/fb164cb3-f703-430e-9983-de28a38d4b81/_result.png`,
+    reelAluminio: "https://image.qwenlm.ai/generated-images/3c1834e0-8f9d-455e-aa64-7f164801a3a3/_result.png",
+    reforma: "https://image.qwenlm.ai/generated-images/35f5a934-1f72-422f-9853-f54ce1b46d36/_result.png",
+    gradesCentro: "https://image.qwenlm.ai/generated-images/a2c46e0b-6030-477f-b971-820fc6ddb6df/_result.png",
+    servicoConcluido: "https://image.qwenlm.ai/generated-images/ed4ca758-8f33-429f-acc0-8c1f12d5cea4/_result.png",
+    // Imagem REAL do site oficial (produção com faíscas)
+    heroSolda: `${SITE}/locksmith-in-special-clothes-and-goggles-works-in-production-metal-processing-with-angle-grinder-scaled-1.jpeg`,
   },
 
-  // LOGO: não há arquivo vetorial oficial disponível publicamente
-  // em resolução adequada para reprodução direta.
-  // >> SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE <<
-  // O site usa uma marca tipográfica fiel ao estilo da identidade
-  // (condensada, caixa alta, "&" em laranja de solda) desenhada em
-  // código — ver src/components/ui.tsx (Logo/SparkMark). Ao receber
-  // o arquivo oficial, salvar em public/client-assets/logo/ nas
-  // variações logo-original / logo-light / logo-dark / logo-symbol.
   logo: {
+    // Trocar pelo arquivo oficial quando recebido do cliente
     original: null as string | null,
     note: "SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE",
   },
   video: {
-    hero: null as string | null,
-    note: "SOLICITAR VÍDEOS REAIS (fabricação, faíscas, automação, instalação) PARA O HERO E CASES",
+    hero: null as string | null, // >> SOLICITAR VÍDEO REAL DE FABRICAÇÃO/INSTALAÇÃO <<
+    note: "SOLICITAR VÍDEOS REAIS (fabricação, faíscas, automação) PARA O HERO E CASES",
   },
 } as const;

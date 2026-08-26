@@ -126,9 +126,18 @@ export function Preloader({ onDone }: { onDone: () => void }) {
             animation: stage >= 1 ? "pl-fade-up 0.55s ease-out forwards" : undefined,
           }}
         >
-          <p className="font-display text-4xl tracking-[0.12em] text-paper-100 uppercase sm:text-5xl">
-            Metal <span className="text-ember-500">&amp;</span> Art
+          <p className="font-display text-4xl tracking-[0.05em] text-paper-100 uppercase sm:text-5xl">
+            Metal
+            <span className="relative mx-[0.12em] inline-block text-ember-500">
+              &amp;
+              <SparkMark className="absolute -top-[0.42em] -right-[0.5em] h-[0.32em] w-[0.32em] text-weld-400" />
+            </span>
+            Art
           </p>
+          <span
+            className="mx-auto mt-3 block h-[2px] w-3/4 bg-gradient-to-r from-transparent via-ember-500 to-transparent"
+            aria-hidden="true"
+          />
           <p className="font-mono mt-3 text-[0.6rem] tracking-[0.5em] text-steel-400 uppercase">
             Serralheria · São Paulo
           </p>

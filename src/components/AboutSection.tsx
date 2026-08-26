@@ -56,18 +56,33 @@ export function AboutSection() {
             </h2>
 
             <Reveal className="mt-10">
-              <div className="img-zoom border-ink-900/15 relative overflow-hidden border">
-                <div ref={imgPar} className="h-[114%] w-full will-change-transform">
+              <div className="relative">
+                {/* imagem institucional oficial do site do cliente */}
+                <div className="img-zoom border-ink-900/15 relative aspect-[2/3] max-h-[34rem] overflow-hidden border">
+                  <div ref={imgPar} className="h-[114%] w-full will-change-transform">
+                    <img
+                      src={assets.official.aboutImage}
+                      alt="Metal & Art Serralheria — fabricação sob medida"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="font-mono absolute bottom-3 left-3 bg-ink-900/85 px-2.5 py-1 text-[0.6rem] tracking-[0.2em] text-paper-100 uppercase">
+                    Metal &amp; Art — {business.address.region}, SP
+                  </p>
+                </div>
+                {/* moldura sobreposta — dia a dia da oficina */}
+                <div className="img-zoom border-ember-600/70 absolute -right-3 -bottom-10 hidden w-[46%] overflow-hidden border-4 bg-paper-100 shadow-[0_18px_40px_rgba(20,22,26,0.28)] sm:block lg:-right-8">
                   <img
                     src={assets.workshop.fabrication}
-                    alt="Equipe da Metal & Art trabalhando na oficina"
-                    className="h-full w-full object-cover"
+                    alt="Corte de perfis metálicos na oficina da Metal & Art"
+                    className="aspect-[4/3] w-full object-cover"
                     loading="lazy"
                   />
+                  <p className="font-mono bg-ink-900 px-2.5 py-1.5 text-[0.55rem] tracking-[0.22em] text-paper-100 uppercase">
+                    Oficina — corte &amp; solda
+                  </p>
                 </div>
-                <p className="font-mono absolute bottom-3 left-3 bg-ink-900/85 px-2.5 py-1 text-[0.6rem] tracking-[0.2em] text-paper-100 uppercase">
-                  Oficina Metal & Art — {business.address.region}, SP
-                </p>
               </div>
             </Reveal>
           </div>
