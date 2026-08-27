@@ -54,6 +54,18 @@ export function startSmooth() {
   lenis?.start();
 }
 
+/** Vai ao topo imediatamente (sem animação) — usado na troca de rotas */
+export function jumpToTop() {
+  if (lenis) {
+    lenis.scrollTo(0, { immediate: true, force: true });
+  } else {
+    window.scrollTo(0, 0);
+  }
+  // garante mesmo com animação nativa em andamento
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
 export function refreshTriggers(delay = 120) {
   window.setTimeout(() => ScrollTrigger.refresh(), delay);
 }

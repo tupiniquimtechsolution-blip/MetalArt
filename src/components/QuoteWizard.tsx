@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { business } from "../config/business";
 import { cn, track, waLink } from "../lib/motion";
 import {
@@ -88,9 +89,17 @@ function OptionGrid({
   );
 }
 
+const SERVICO_OPTIONS = ["Portão", "Reforma", "Automação", "Grade", "Corrimão", "Guarda-corpo", "Porta de enrolar", "Estrutura metálica", "Outro"];
+
 export function QuoteWizard() {
+  const loc = useLocation();
+  // Pré-seleção vinda da página de serviço (Link state)
+  const preService = ((loc.state as { service?: string } | null)?.service ?? "").trim();
   const [step, setStep] = useState(0);
-  const [a, setA] = useState<Answers>(INITIAL);
+  const [a, setA] = useState<Answers>({
+    ...INITIAL,
+    servico: SERVICO_OPTIONS.includes(preService) ? preService : "",
+  });
   const [copied, setCopied] = useState(false);
   const set = <K extends keyof Answers>(k: K, v: Answers[K]) => setA((p) => ({ ...p, [k]: v }));
 
@@ -191,7 +200,7 @@ export function QuoteWizard() {
             <div className="mt-8">
               {STEPS[step].key === "servico" && (
                 <OptionGrid
-                  options={["Portão", "Reforma", "Automação", "Grade", "Corrimão", "Guarda-corpo", "Porta de enrolar", "Estrutura metálica", "Outro"]}
+                  options={SERVICO_OPTIONS}
                   value={a.servico}
                   onPick={(v) => set("servico", v)}
                 />

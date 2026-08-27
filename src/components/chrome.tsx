@@ -40,11 +40,13 @@ export function useGoSection() {
   const loc = useLocation();
   return useCallback(
     (anchor: string) => {
+      track(`nav_secao_${anchor}`);
       if (loc.pathname === "/") {
-        scrollToEl(`#${anchor}`);
+        scrollToEl(`#${anchor}`, -72);
       } else {
+        // em páginas internas: volta para a Home já com a âncora na bagagem
         setPendingAnchor(anchor);
-        nav("/");
+        nav("/", { state: { anchor } });
       }
     },
     [loc.pathname, nav]
@@ -265,15 +267,16 @@ export function Header() {
         aria-hidden={!open}
       >
         <div className="flex flex-1 flex-col justify-center px-8 pt-20">
-          {[
+          {([
             { label: "Serviços", to: "/servicos", i: "01" },
             { label: "Projetos", to: "/projetos", i: "02" },
             { label: "Orçamento", to: "/orcamento", i: "03" },
             { label: "Sobre", to: "/sobre", i: "04" },
-            { label: "Contato", to: "/contato", i: "05" },
-          ].map((l, idx) => (
+            { label: "Avaliações", to: "/", anchor: "avaliacoes", i: "05" },
+            { label: "Contato", to: "/contato", i: "06" },
+          ] as { label: string; to: string; i: string; anchor?: string }[]).map((l, idx) => (
             <Link
-              key={l.to}
+              key={l.label}
               to={l.to}
               tabIndex={open ? 0 : -1}
               className="group border-b border-coal-700/60 py-4"
@@ -283,7 +286,13 @@ export function Header() {
                 opacity: open ? 1 : 0,
                 transform: open ? "translateY(0)" : "translateY(24px)",
               }}
-              onClick={() => track(`nav_mobile_${l.label}`)}
+              onClick={(e) => {
+                if (l.anchor) {
+                  e.preventDefault();
+                  goSection(l.anchor);
+                }
+                track(`nav_mobile_${l.label}`);
+              }}
             >
               <span className="flex items-baseline gap-4">
                 <span className="font-mono text-[0.65rem] text-ember-500">{l.i}</span>

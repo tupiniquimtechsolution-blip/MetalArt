@@ -65,6 +65,36 @@ export function ProjectsList() {
       <div className="-mt-4">
         <Portfolio mode="page" />
       </div>
+
+      {/* ligação com as demais páginas */}
+      <section className="border-t border-coal-700 bg-coal-900 py-14">
+        <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-6 px-5 md:flex-row md:items-center md:px-8">
+          <div>
+            <h2 className="font-display text-2xl tracking-[0.03em] text-paper-100 uppercase md:text-3xl">
+              Gostou do que viu <em className="text-ember-500 not-italic">aqui</em>?
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-steel-400">
+              Tudo isso saiu da mesma oficina. Conheça os serviços em detalhe ou monte seu pedido de orçamento em menos de dois minutos.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              to="/servicos"
+              onClick={() => track("nav_projetos_para_servicos")}
+              className="btn-press border-coal-600 hover:border-ember-500 hover:text-ember-400 font-display inline-flex items-center gap-2 border px-6 py-3.5 text-base tracking-[0.06em] text-paper-100 uppercase"
+            >
+              Ver todos os serviços <IconArrowRight className="h-4.5 w-4.5" />
+            </Link>
+            <Link
+              to="/orcamento"
+              onClick={() => track("nav_projetos_para_orcamento")}
+              className="btn-press bg-ember-500 hover:bg-weld-400 font-display inline-flex items-center gap-2 px-6 py-3.5 text-base tracking-[0.06em] text-coal-950 uppercase"
+            >
+              Montar orçamento <IconArrowUpRight className="h-4.5 w-4.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

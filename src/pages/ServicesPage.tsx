@@ -13,6 +13,20 @@ import {
   SectionTag,
 } from "../components/ui";
 
+/** Converte o slug do serviço na opção equivalente do orçamento guiado */
+const WIZARD_BY_SLUG: Record<string, string> = {
+  "reforma-de-portoes": "Reforma",
+  "automacao-de-portoes": "Automação",
+  "portoes-sob-medida": "Portão",
+  "grades-de-protecao": "Grade",
+  corrimaos: "Corrimão",
+  "guarda-corpos": "Guarda-corpo",
+  "porta-de-enrolar": "Porta de enrolar",
+  "estruturas-metalicas": "Estrutura metálica",
+  "fechaduras-e-travas": "Outro",
+};
+const wizardServiceFor = (slug: string) => WIZARD_BY_SLUG[slug] ?? "Outro";
+
 function PageHero({ kicker, title, sub }: { kicker: string; title: React.ReactNode[]; sub: string }) {
   return (
     <header className="blueprint-grid relative overflow-hidden bg-coal-950 pt-36 pb-16 md:pt-44 md:pb-20">
@@ -86,6 +100,23 @@ export function ServicesList() {
               <IconWhatsApp className="h-4.5 w-4.5" /> Descrever no WhatsApp
             </a>
           </Reveal>
+
+          {/* ligação com as demais páginas */}
+          <Reveal className="mt-10 flex flex-col items-start justify-between gap-6 border border-coal-700 bg-coal-850 p-8 md:flex-row md:items-center md:p-10">
+            <div>
+              <p className="font-mono text-[0.62rem] tracking-[0.28em] text-ember-400 uppercase">Antes de decidir, veja feito</p>
+              <h2 className="font-display mt-2 text-3xl tracking-[0.02em] text-paper-100 uppercase">
+                Projetos reais saídos <em className="text-ember-500 not-italic">daqui</em>.
+              </h2>
+            </div>
+            <Link
+              to="/projetos"
+              onClick={() => track("nav_servicos_para_projetos")}
+              className="btn-press border-coal-600 hover:border-ember-500 hover:text-ember-400 font-display inline-flex shrink-0 items-center gap-3 border px-6 py-3.5 text-base tracking-[0.06em] text-paper-100 uppercase"
+            >
+              Ver portfólio completo <IconArrowRight className="h-4.5 w-4.5" />
+            </Link>
+          </Reveal>
         </div>
       </section>
     </>
@@ -143,6 +174,8 @@ export function ServiceDetail() {
               </a>
               <Link
                 to="/orcamento"
+                state={{ service: wizardServiceFor(service.slug) }}
+                onClick={() => track("orcamento_do_servico", { slug: service.slug })}
                 className="btn-press border-coal-600 hover:border-ember-500 hover:text-ember-400 font-display inline-flex items-center gap-2 border px-6 py-3.5 text-base tracking-[0.06em] text-paper-100 uppercase"
               >
                 Orçamento guiado <IconArrowRight className="h-4.5 w-4.5" />

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { HashRouter, Link, Route, Routes, useLocation } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { initSmoothScroll, refreshTriggers, scrollToEl } from "./lib/motion";
+import { initSmoothScroll, jumpToTop, refreshTriggers, scrollToEl } from "./lib/motion";
 import { Cursor } from "./components/ui";
 import {
   Footer,
@@ -35,18 +35,21 @@ function NotFound() {
 function RouteManager() {
   const loc = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const anchor = consumePendingAnchor();
-    const t = window.setTimeout(() => {
-      if (anchor) scrollToEl(`#${anchor}`, -72);
-      ScrollTrigger.refresh();
-    }, 180);
-    const t2 = window.setTimeout(() => ScrollTrigger.refresh(), 900);
-    return () => {
-      window.clearTimeout(t);
-      window.clearTimeout(t2);
-    };
-  }, [loc.pathname]);
+    // topo imediato — nunca deixar a página nova "nascer" no meio do scroll
+    jumpToTop();
+    const stateAnchor = (loc.state as { anchor?: string } | null)?.anchor ?? null;
+    const anchor = stateAnchor || consumePendingAnchor();
+    // tenta rolar até a âncora em várias janelas (espera imagens/renders)
+    const timers = [220, 700, 1400].map((delay) =>
+      window.setTimeout(() => {
+        if (anchor && document.getElementById(anchor)) {
+          scrollToEl(`#${anchor}`, -72);
+        }
+        ScrollTrigger.refresh();
+      }, delay)
+    );
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, [loc.pathname, loc.state]);
   return null;
 }
 
