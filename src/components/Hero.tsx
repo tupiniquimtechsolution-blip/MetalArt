@@ -56,7 +56,7 @@ function HeroSlideshow() {
 
 export function Hero() {
   const imgRef = useParallax<HTMLDivElement>(55);
-  const label = useScramble("SERRALHERIA SOB MEDIDA — ZONA LESTE · SÃO PAULO", 300);
+  const label = useScramble("SERRALHERIA SOB MEDIDA EM SÃO PAULO", 300);
   const [showCtas, setShowCtas] = useState(false);
 
   useEffect(() => {
@@ -87,21 +87,18 @@ export function Hero() {
             {label || "\u00A0"}
           </p>
 
-          <h1 className="font-display max-w-[16ch] text-[clamp(3.1rem,9.5vw,8.75rem)] leading-[0.94] tracking-[0.01em] uppercase">
+          <h1 className="font-display max-w-[16ch] text-[clamp(3.1rem,9.5vw,8.75rem)] font-bold leading-[0.94] tracking-[0.005em] uppercase">
             <MaskLines
               delay={0.15}
               lines={[
                 <span key="1" className="text-paper-100">
-                  Transformamos
+                  Metal <em className="text-ember-500 not-italic">sob medida.</em>
                 </span>,
-                <span key="2" className="text-paper-100">
-                  <em className="text-ember-500 not-italic">metal</em> em
+                <span key="2" className="text-stroke">
+                  Segurança
                 </span>,
-                <span key="3" className="text-stroke">
-                  segurança,
-                </span>,
-                <span key="4" className="text-paper-100">
-                  função <span className="text-ember-500">&amp;</span> design.
+                <span key="3" className="text-paper-100">
+                  que <span className="text-weld-400">dura.</span>
                 </span>,
               ]}
             />
@@ -115,22 +112,27 @@ export function Hero() {
             }}
           >
             <p className="max-w-xl text-base leading-relaxed text-steel-300 md:text-lg">
-              Soluções sob medida em serralheria: portões, automação, grades,
-              corrimãos e estruturas para{" "}
-              <strong className="font-medium text-paper-100">residências, condomínios e empresas</strong>{" "}
-              — medidos, fabricados e instalados pela mesma equipe.
+              Portões, grades, corrimãos, automação e estruturas metálicas com
+              execução profissional para{" "}
+              <strong className="font-medium text-paper-100">residências, condomínios e empresas</strong>.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
               <Magnetic>
-                <Link
-                  to="/orcamento"
-                  onClick={() => track("cta_orcamento_hero")}
-                  className="btn-press bg-ember-500 hover:bg-weld-400 font-display group inline-flex items-center gap-3 px-7 py-4 text-lg tracking-[0.06em] text-coal-950 uppercase"
+                <a
+                  href={waLink(
+                    business.whatsappDigits,
+                    "Olá, Metal & Art! Vim pelo site e gostaria de solicitar um orçamento."
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("cta_whatsapp_hero")}
+                  className="btn-press bg-ember-500 hover:bg-weld-400 font-display group inline-flex items-center gap-3 px-7 py-4 text-lg font-bold tracking-[0.06em] text-coal-950 uppercase"
                 >
-                  Solicitar orçamento
+                  <IconWhatsApp className="h-5 w-5" />
+                  Solicitar orçamento no WhatsApp
                   <IconArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+                </a>
               </Magnetic>
               <Magnetic>
                 <a
@@ -142,7 +144,7 @@ export function Hero() {
                   }}
                   className="btn-press font-display border-paper-100/35 hover:border-ember-500 hover:text-ember-400 inline-flex items-center gap-3 border px-7 py-4 text-lg tracking-[0.06em] text-paper-100 uppercase"
                 >
-                  Ver projetos
+                  Ver projetos realizados
                   <IconArrowRight className="h-5 w-5" />
                 </a>
               </Magnetic>
