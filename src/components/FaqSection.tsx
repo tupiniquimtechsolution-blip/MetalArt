@@ -105,7 +105,7 @@ export function FaqSection() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20">
           <div>
-            <SectionTag index="14" label="Perguntas frequentes" />
+            <SectionTag index="12" label="Perguntas frequentes" />
             <h2 className="font-display mt-6 text-[clamp(2.2rem,5vw,3.8rem)] leading-[0.96] uppercase">
               <MaskLines
                 lines={[

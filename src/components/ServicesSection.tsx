@@ -75,7 +75,7 @@ export function ServicesSection() {
   return (
     <section id="servicos" className="relative bg-coal-900 py-24 md:py-32">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <SectionTag index="03" label="Serviços" />
+        <SectionTag index="02" label="Serviços" />
         <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display max-w-[16ch] text-[clamp(2.4rem,6vw,5rem)] leading-[0.96] uppercase">
             <MaskLines
@@ -179,7 +179,7 @@ export function ServicesSection() {
 
       {/* storytelling sticky — capítulos */}
       <div ref={storyRef} className="mx-auto mt-28 max-w-[1440px] px-5 md:px-8 md:mt-40">
-        <SectionTag index="04" label="Capitais da oficina" />
+        <SectionTag index="03" label="Capitais da oficina" />
         <h3 className="font-display mt-6 text-[clamp(2rem,4.5vw,3.6rem)] leading-[0.98] text-paper-100 uppercase">
           Cinco frentes, <em className="text-ember-500 not-italic">um padrão só</em>.
         </h3>

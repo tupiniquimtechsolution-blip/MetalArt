@@ -1,11 +1,10 @@
 import { Hero } from "../components/Hero";
-import { ProcessJourney } from "../components/ProcessJourney";
 import { AboutSection } from "../components/AboutSection";
 import { ServicesSection } from "../components/ServicesSection";
 import { Spaces } from "../components/Spaces";
 import { Portfolio } from "../components/Portfolio";
 import { BeforeAfter, Diagnostic } from "../components/Interactives";
-import { HowWeWork, Anatomy } from "../components/Process";
+import { HowWeWork } from "../components/Process";
 import { Reviews, InstaStrip, Location, FinalCta } from "../components/Social";
 import { FaqSection } from "../components/FaqSection";
 import { WeldDivider } from "../components/ui";
@@ -14,7 +13,6 @@ export function Home() {
   return (
     <>
       <Hero />
-      <ProcessJourney />
       <AboutSection />
       <ServicesSection />
       <Spaces />
@@ -27,7 +25,6 @@ export function Home() {
         </div>
       </div>
       <HowWeWork />
-      <Anatomy />
       <Reviews />
       <InstaStrip />
       <Location />

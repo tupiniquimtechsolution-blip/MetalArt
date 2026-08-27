@@ -89,7 +89,7 @@ export function Spaces() {
       className="relative overflow-hidden border-y border-coal-700/60 bg-coal-900"
     >
       <div className="mx-auto max-w-[1440px] px-5 pt-16 md:px-8 md:pt-24">
-        <SectionTag index="05" label="Onde atendemos" />
+        <SectionTag index="04" label="Onde atendemos" />
         <h2 className="font-display mt-6 text-[clamp(2.4rem,5.5vw,4.6rem)] leading-[0.96] uppercase">
           <MaskLines
             lines={[

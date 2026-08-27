@@ -21,7 +21,7 @@ export function BeforeAfter() {
   return (
     <section id="antes-depois" className="blueprint-grid border-y border-coal-700/60 bg-coal-850 py-24 md:py-32">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <SectionTag index="06" label="Reformas" />
+        <SectionTag index="05" label="Reformas" />
         <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display max-w-[16ch] text-[clamp(2.4rem,6vw,5rem)] leading-[0.96] uppercase">
             <MaskLines
@@ -153,7 +153,7 @@ export function Diagnostic() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
           <div>
-            <SectionTag index="07" label="Diagnóstico rápido" />
+            <SectionTag index="06" label="Diagnóstico rápido" />
             <h2 className="font-display mt-6 text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[0.97] uppercase">
               <MaskLines
                 lines={[

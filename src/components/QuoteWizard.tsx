@@ -156,7 +156,7 @@ export function QuoteWizard() {
   return (
     <section id="orcamento" className="blueprint-grid bg-coal-950 py-24 md:py-32">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <SectionTag index="08" label="Orçamento guiado" />
+        <SectionTag index="07" label="Orçamento guiado" />
         <h1 className="font-display mt-6 text-[clamp(2.4rem,6vw,4.8rem)] leading-[0.96] uppercase">
           Monte seu pedido <em className="text-ember-500 not-italic">de orçamento</em>.
         </h1>

@@ -42,7 +42,7 @@ export function AboutSection() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-24">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <SectionTag light index="02" label="A Metal & Art" />
+            <SectionTag light index="01" label="A Metal & Art" />
             <h2 className="font-display mt-6 text-[clamp(2.6rem,5.5vw,4.6rem)] leading-[0.96] uppercase">
               <MaskLines
                 lines={[

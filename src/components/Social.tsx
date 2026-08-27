@@ -25,7 +25,7 @@ export function Reviews() {
   return (
     <section id="avaliacoes" className="blueprint-grid-light bg-paper-100 py-24 text-ink-900 md:py-32">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <SectionTag light index="11" label="Prova social" />
+        <SectionTag light index="09" label="Prova social" />
         <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display max-w-[18ch] text-[clamp(2.4rem,5.5vw,4.6rem)] leading-[0.96] uppercase">
             <MaskLines
@@ -171,7 +171,7 @@ export function InstaStrip() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <SectionTag index="12" label="Bastidores" />
+            <SectionTag index="10" label="Bastidores" />
             <div className="mt-6 flex flex-wrap items-end gap-x-8 gap-y-6">
               <Logo badge className="hidden sm:inline-flex" />
               <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] leading-[0.96] uppercase">
@@ -257,7 +257,7 @@ export function Location() {
   return (
     <section id="localizacao" className="blueprint-grid-light border-t border-ink-900/10 bg-paper-100 py-24 text-ink-900 md:py-32">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8">
-        <SectionTag light index="13" label="Localização" />
+        <SectionTag light index="11" label="Localização" />
         <h2 className="font-display mt-6 max-w-[20ch] text-[clamp(2.4rem,5.5vw,4.6rem)] leading-[0.96] uppercase">
           <MaskLines
             lines={[
