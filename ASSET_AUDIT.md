@@ -62,10 +62,18 @@ salvar conforme CLIENT_REPLACEMENT_GUIDE.md e substituir as referências.
 
 ## Placeholders restantes
 
-**Todas as fotografias** do site são referências ilustrativas geradas para o
-protótipo (banco de imagens do ambiente), mapeadas em `src/config/assets.ts`.
-Nenhuma obra de terceiro foi atribuída à empresa; nenhum antes/depois falso é
-apresentado como real (o slider usa par ilustrativo sinalizado como referência).
+**Nenhuma imagem gerada/banco é usada.** Todas as referências de mídia em
+`src/config/assets.ts` apontam para a pasta local `public/client-assets/media/`,
+que deve ser preenchida com os arquivos reais da pasta oficial do Drive:
+`https://drive.google.com/drive/folders/1kdx8AvTpfgRugHaptm32c5k3GpL0W6Xi`
+(inventário: 1 logo + 36 fotos + 14 vídeos).
+
+Enquanto a pasta local não é preenchida, um guard global oculta as imagens
+ausentes (sem ícone de "quebrado") e os slots exibem o fundo da marca.
+O passo único de ativação está em `CLIENT_REPLACEMENT_GUIDE.md`.
+
+Nenhuma obra de terceiro é atribuída à empresa; nenhum antes/depois é
+apresentado como real até que o par do mesmo vão (1774112432) seja adicionado.
 
 ## Materiais a solicitar em HD ao cliente (checklist)
 

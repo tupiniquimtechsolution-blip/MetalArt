@@ -71,14 +71,50 @@ export function Hero() {
         className="relative flex min-h-svh flex-col overflow-hidden bg-coal-950"
         aria-label="Apresentação"
       >
-        {/* camadas de fundo com parallax + slideshow oficial do site
-            (mídias reais do cliente — fade + ken burns como no original) */}
+        {/* fundo em camadas da marca: navy profundo → azul industrial.
+            Forte por si só; quando as fotos reais da pasta entram, o
+            slideshow as sobrepõe (fade + ken burns). */}
+        <div className="absolute inset-0 bg-gradient-to-br from-coal-950 via-coal-900 to-arc-900" />
+        <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_85%_10%,var(--color-arc-700)_0%,transparent_55%)] opacity-45" />
+
+        {/* slideshow com as mídias reais da pasta do cliente */}
         <div ref={imgRef} className="absolute inset-[-12%] will-change-transform">
           <HeroSlideshow />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-coal-950 via-coal-950/72 to-coal-950/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-coal-950 via-transparent to-coal-950/70" />
         <div className="blueprint-grid absolute inset-0 opacity-60 [mask-image:linear-gradient(to_right,black,transparent_70%)]" />
+
+        {/* desenho técnico de portão — identidade de projeto, não é foto */}
+        <svg
+          viewBox="0 0 420 300"
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 right-[-4%] hidden h-[68%] -translate-y-1/2 opacity-[0.16] lg:block"
+        >
+          <g fill="none" stroke="var(--color-arc-400)" strokeWidth="1">
+            <rect x="40" y="40" width="300" height="200" />
+            {[90, 140, 190, 240, 290].map((x) => (
+              <line key={x} x1={x} y1="52" x2={x} y2="228" strokeWidth="0.7" />
+            ))}
+            <line x1="40" y1="80" x2="340" y2="80" strokeWidth="0.7" />
+            <line x1="40" y1="200" x2="340" y2="200" strokeWidth="0.7" />
+            <line x1="10" y1="252" x2="410" y2="252" strokeWidth="1.6" />
+            {Array.from({ length: 20 }).map((_, i) => (
+              <line key={i} x1={20 + i * 19} y1="244" x2={20 + i * 19} y2="252" strokeWidth="0.7" />
+            ))}
+            <rect x="340" y="214" width="62" height="28" />
+            <circle cx="356" cy="228" r="4" strokeWidth="0.7" />
+          </g>
+          <g stroke="var(--color-ember-500)" strokeWidth="1">
+            <line x1="40" y1="20" x2="340" y2="20" />
+            <line x1="40" y1="14" x2="40" y2="26" />
+            <line x1="340" y1="14" x2="340" y2="26" />
+          </g>
+          <text x="185" y="12" fill="var(--color-steel-400)" fontSize="9" fontFamily="IBM Plex Mono, monospace" letterSpacing="2" textAnchor="middle">
+            VÃO LIVRE
+          </text>
+        </svg>
+
         <SparkField density={26} />
 
         {/* conteúdo */}

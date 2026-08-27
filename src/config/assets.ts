@@ -2,85 +2,116 @@
  * ============================================================
  *  ARQUIVO CENTRAL DE ASSETS — METAL & ART SERRALHERIA
  * ============================================================
- *  Nenhum asset importante deve ficar espalhado pelos componentes.
+ *  MÍDIA OFICIAL = pasta do Google Drive fornecida pelo cliente:
+ *  https://drive.google.com/drive/folders/1kdx8AvTpfgRugHaptm32c5k3GpL0W6Xi
+ *  (51 arquivos: 1 logo + 36 fotos + 14 vídeos — inventário no guia
+ *   de identidade e em ASSET_AUDIT.md)
  *
- *  FONTES (ver ASSET_SOURCES.md e ASSET_AUDIT.md):
- *  — `official.*`: mídias reais coletadas do site oficial do cliente
- *    (metaleartserralheria.com.br). Hotlink direto do servidor do
- *    cliente — antes de publicar, baixar e salvar em
- *    public/client-assets/ e trocar as URLs.
- *  — demais chaves: referências ilustrativas do protótipo.
- *    >> SOLICITAR ARQUIVOS ORIGINAIS EM HD AO CLIENTE <<
+ *  >> REGRA: usar SOMENTE as mídias dessa pasta. ZERO imagens
+ *     geradas/banco. Nenhum arquivo fora dela deve ser referenciado. <<
+ *
+ *  COMO ATIVAR (1 passo):
+ *  1. No Drive: selecionar tudo → "Fazer download" (gera um .zip).
+ *  2. Descompactar e copiar os arquivos para public/client-assets/media/
+ *     renomeando cada um conforme o MAPA abaixo (prefixo → slot local).
+ *  Pronto: todas as imagens/vídeos reais aparecem no site automaticamente.
+ *  Enquanto isso, os slots sem arquivo ficam com o fundo da marca
+ *  (nenhuma imagem quebrada, nenhuma imagem gerada).
+ *
+ *  MAPA (prefixo real da pasta → slot local):
+ *  logo.jpg                     → media/logo/logo.jpg
+ *  1784984255 (portão preto)    → media/fotos/portoes/portao-deslizante.jpg
+ *  portão social                → media/fotos/portoes/portao-social.jpg
+ *  1774786200 (automação)       → media/fotos/automacao/motor.jpg
+ *  1771634438/1771639042        → media/fotos/corrimaos/corrimao.jpg
+ *  1771634656 (grades janela)   → media/fotos/grades/grade-janela.jpg
+ *  1771634799 (porta/fecham.)   → media/fotos/portas-enrolar/porta.jpg
+ *  1774112432 (portão verde)    → media/fotos/antes-depois/antes.jpg + depois.jpg
+ *  1775044474 (instalação)      → media/fotos/oficina/fabricacao.jpg
+ *  (bastidores/reels)           → media/social/*.jpg
  * ============================================================
  */
 
-const SITE = "https://metaleartserralheria.com.br/wp-content/uploads/2026/02";
+/** Base local das mídias da pasta do cliente (public/client-assets/media) */
+const MEDIA = "/client-assets/media";
+const FOTOS = `${MEDIA}/fotos`;
 
 export const assets = {
-  /** Mídias REAIS do site oficial do cliente (coletadas em 22/08/2026) */
+  /**
+   * Mídias reais da pasta do Drive (slots locais).
+   * Mantidas as chaves `official.*` para compatibilidade — agora
+   * apontam para os arquivos reais da pasta, não para o site.
+   */
   official: {
-    /** Slide 1 do slideshow oficial — esmerilhadeira/faíscas na produção */
-    heroSparks: `${SITE}/locksmith-in-special-clothes-and-goggles-works-in-production-metal-processing-with-angle-grinder-scaled-1.jpeg`,
-    /** Slide 2 do slideshow oficial — imagem da oficina/equipe */
-    heroWorkshop: `${SITE}/WhatsApp-Image-2026-02-22-at-21.05.02.jpeg`,
-    /** Imagem institucional da seção "Sobre Nós" do site oficial */
-    aboutImage: `${SITE}/ChatGPT-Image-22-de-fev.-de-2026-21_44_59-683x1024.png`,
-    /**
-     * LOGO: o arquivo original está no servidor do cliente (site e
-     * Instagram). >> SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE <<
-     * Assim que enviado, salvar em public/client-assets/logo/ e apontar
-     * `logo.original` abaixo — o componente Logo já suporta a troca.
-     */
-    logoUrl: null as string | null,
+    /** Hero slide 1 — portão preto instalado (1784984255) */
+    heroSparks: `${FOTOS}/portoes/portao-deslizante.jpg`,
+    /** Hero slide 2 — instalação com profissional em cena (1775044474) */
+    heroWorkshop: `${FOTOS}/oficina/fabricacao.jpg`,
+    /** Seção "Sob medida" — conjunto residencial claro (1771640508) */
+    aboutImage: `${FOTOS}/portoes/portao-social.jpg`,
+    /** Logo original da pasta (logo.jpg) */
+    logoUrl: `${MEDIA}/logo/logo.jpg`,
   },
 
   hero: {
-    // Faíscas de solda — referência ilustrativa (protótipo)
-    main: "https://image.qwenlm.ai/generated-images/fb164cb3-f703-430e-9983-de28a38d4b81/_result.png",
+    main: `${FOTOS}/portoes/portao-deslizante.jpg`,
   },
   gates: {
-    sliding: "https://image.qwenlm.ai/generated-images/0f4ef4e4-20f9-4c76-989b-a8fd08492ca9/_result.png",
-    social: "https://image.qwenlm.ai/generated-images/3c1834e0-8f9d-455e-aa64-7f164801a3a3/_result.png",
+    /** Portão preto residencial/condominial (1784984255) */
+    sliding: `${FOTOS}/portoes/portao-deslizante.jpg`,
+    /** Portão social (conjunto 1771640508) */
+    social: `${FOTOS}/portoes/portao-social.jpg`,
   },
   automation: {
-    motor: "https://image.qwenlm.ai/generated-images/13d1e4b9-04f2-46c1-a3fa-9811652dfa13/_result.png",
+    /** Automação de portão (1774786200) */
+    motor: `${FOTOS}/automacao/motor.jpg`,
   },
   railings: {
-    handrail: "https://image.qwenlm.ai/generated-images/b69877c7-3081-4454-9a3d-565a2d39a5fc/_result.png",
+    /** Corrimão/guarda-corpo preto (1771634438 / 1771639042) */
+    handrail: `${FOTOS}/corrimaos/corrimao.jpg`,
   },
   grids: {
-    window: "https://image.qwenlm.ai/generated-images/a2c46e0b-6030-477f-b971-820fc6ddb6df/_result.png",
+    /** Grades de proteção em janela (1771634656) */
+    window: `${FOTOS}/grades/grade-janela.jpg`,
   },
   rollingDoors: {
-    storefront: "https://image.qwenlm.ai/generated-images/ed4ca758-8f33-429f-acc0-8c1f12d5cea4/_result.png",
+    /** Porta/fechamento metálico (1771634799) */
+    storefront: `${FOTOS}/portas-enrolar/porta.jpg`,
   },
   beforeAfter: {
-    // Par ilustrativo (mesmo enquadramento) — substituir por
-    // antes/depois REAL do mesmo ângulo (ex.: publicação de 25/07/2026)
-    before: "https://image.qwenlm.ai/generated-images/35f5a934-1f72-422f-9853-f54ce1b46d36/_result.png",
-    after: "https://image.qwenlm.ai/generated-images/352da9f7-728a-494c-b986-b200b532fdaf/_result.png",
+    /**
+     * Par REAL do mesmo vão — portão verde de garagem (1774112432).
+     * Use um frame "antes" e um "depois" do mesmo ângulo.
+     */
+    before: `${FOTOS}/antes-depois/antes.jpg`,
+    after: `${FOTOS}/antes-depois/depois.jpg`,
   },
   workshop: {
-    fabrication: "https://image.qwenlm.ai/generated-images/d42aa287-8460-4111-acd4-be7eda686a3a/_result.png",
+    /** Bastidores de fabricação/instalação (1775044474) */
+    fabrication: `${FOTOS}/oficina/fabricacao.jpg`,
   },
 
-  /** Imagens de referência para os cards que linkam posts reais do Instagram */
+  /** Bastidores/reels — mídia real da pasta para os cards do Instagram */
   instagram: {
-    reelAluminio: "https://image.qwenlm.ai/generated-images/3c1834e0-8f9d-455e-aa64-7f164801a3a3/_result.png",
-    reforma: "https://image.qwenlm.ai/generated-images/35f5a934-1f72-422f-9853-f54ce1b46d36/_result.png",
-    gradesCentro: "https://image.qwenlm.ai/generated-images/a2c46e0b-6030-477f-b971-820fc6ddb6df/_result.png",
-    servicoConcluido: "https://image.qwenlm.ai/generated-images/ed4ca758-8f33-429f-acc0-8c1f12d5cea4/_result.png",
-    // Imagem REAL do site oficial (produção com faíscas)
-    heroSolda: `${SITE}/locksmith-in-special-clothes-and-goggles-works-in-production-metal-processing-with-angle-grinder-scaled-1.jpeg`,
+    reelAluminio: `${MEDIA}/social/reel-aluminio.jpg`,
+    reforma: `${MEDIA}/social/reforma.jpg`,
+    gradesCentro: `${MEDIA}/social/grades-centro.jpg`,
+    servicoConcluido: `${MEDIA}/social/servico-concluido.jpg`,
+    heroSolda: `${FOTOS}/oficina/fabricacao.jpg`,
   },
 
   logo: {
-    // Trocar pelo arquivo oficial quando recebido do cliente
-    original: null as string | null,
-    note: "SOLICITAR LOGOTIPO VETORIAL/ORIGINAL AO CLIENTE",
+    /** Logo oficial da pasta (logo.jpg) — o componente Logo o usa automaticamente */
+    original: `${MEDIA}/logo/logo.jpg`,
+    note: "Arquivo logo.jpg da pasta oficial do cliente",
   },
+
+  /**
+   * Vídeos reais da pasta (MP4). Ative apontando para os arquivos
+   * locais após o download (ex.: media/videos/1775044474.mp4).
+   */
   video: {
-    hero: null as string | null, // >> SOLICITAR VÍDEO REAL DE FABRICAÇÃO/INSTALAÇÃO <<
-    note: "SOLICITAR VÍDEOS REAIS (fabricação, faíscas, automação) PARA O HERO E CASES",
+    hero: null as string | null,
+    note: "VÍDEOS REAIS DA PASTA: usar 1775044474 (instalação) e recortes de 1774786200 (automação)",
   },
 } as const;

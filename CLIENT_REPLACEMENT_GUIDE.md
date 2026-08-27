@@ -3,6 +3,22 @@
 Guia de substituição de conteúdo do protótipo pelos materiais oficiais.
 Caminhos exatos para cada item:
 
+## ⚡ ATIVAÇÃO DAS MÍDIAS DA PASTA DO DRIVE (1 passo)
+
+Fonte oficial de mídia (logo + 36 fotos + 14 vídeos):
+`https://drive.google.com/drive/folders/1kdx8AvTpfgRugHaptm32c5k3GpL0W6Xi`
+
+O site já está 100% ligado a essa pasta e **não usa nenhuma imagem gerada**.
+Para as mídias reais aparecerem:
+
+1. Abra a pasta no Drive → selecione tudo → **Fazer download** (gera um .zip).
+2. Descompacte e copie os arquivos para `public/client-assets/media/`,
+   renomeando conforme o mapa em `src/config/assets.ts` (prefixo → slot).
+3. Pronto — fotos, vídeos e logo reais surgem em todo o site.
+
+Enquanto isso, os slots vazios exibem o fundo da marca (navy/blueprint) —
+nunca imagem quebrada, nunca imagem gerada.
+
 ## LOGO
 - **Onde está:** reprodução tipográfica em `src/components/ui.tsx` → componente `Logo`
   (variações `badge` e inline) + `SparkMark` (símbolo da faísca).

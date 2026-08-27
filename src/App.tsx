@@ -64,6 +64,28 @@ export default function App() {
     return cleanup;
   }, []);
 
+  /**
+   * Guard de mídia: as imagens vêm exclusivamente da pasta do cliente
+   * (public/client-assets/media). Enquanto um arquivo ainda não foi
+   * colocado lá, o <img> que falhar é ocultado com elegância — nunca
+   * aparece ícone de "imagem quebrada" e nenhuma imagem gerada é usada
+   * como fallback.
+   */
+  useEffect(() => {
+    const onError = (e: Event) => {
+      const t = e.target as HTMLElement | null;
+      if (!t || t.dataset.mediaGuarded) return;
+      if (t.tagName === "IMG" || t.tagName === "VIDEO") {
+        t.dataset.mediaGuarded = "1";
+        t.style.transition = "opacity .3s ease";
+        t.style.opacity = "0";
+      }
+    };
+    // captura: o erro de <img> não borbulha, então ouvimos na fase de captura
+    window.addEventListener("error", onError, true);
+    return () => window.removeEventListener("error", onError, true);
+  }, []);
+
   useEffect(() => {
     if (!loading) refreshTriggers(250);
   }, [loading]);
