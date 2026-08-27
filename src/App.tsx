@@ -14,6 +14,7 @@ import { Home } from "./pages/Home";
 import { ServiceDetail, ServicesList } from "./pages/ServicesPage";
 import { ProjectDetail, ProjectsList } from "./pages/ProjectsPage";
 import { AboutPage, ContactPage, PrivacyPage, QuotePage } from "./pages/StaticPages";
+import { FaqPage } from "./components/FaqSection";
 
 function NotFound() {
   return (
@@ -84,6 +85,7 @@ export default function App() {
             <Route path="/sobre" element={<AboutPage />} />
             <Route path="/orcamento" element={<QuotePage />} />
             <Route path="/contato" element={<ContactPage />} />
+            <Route path="/faq" element={<FaqPage />} />
             <Route path="/privacidade" element={<PrivacyPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

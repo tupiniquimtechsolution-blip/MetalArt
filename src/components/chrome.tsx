@@ -423,6 +423,11 @@ export function Footer() {
                   Avaliações
                 </button>
               </li>
+              <li>
+                <Link to="/faq" className="underline-weld text-steel-300 hover:text-paper-100 pb-0.5">
+                  Perguntas frequentes
+                </Link>
+              </li>
             </ul>
           </nav>
 

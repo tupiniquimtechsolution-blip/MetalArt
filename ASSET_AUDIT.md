@@ -14,6 +14,52 @@ Auditoria de assets — coleta em **22/08/2026**.
 | Vídeos reais | reels públicos no Instagram | 0 | solicitar ao cliente |
 | Logotipo | presente no site/Instagram (sem arquivo acessível) | reprodução tipográfica fiel em código | solicitar vetor original |
 
+## Inventário oficial recebido (Guia de Identidade — Google Drive)
+
+**51 arquivos: 1 logo JPG + 36 fotos JPG + 14 vídeos MP4 (~6min35s).**
+Arquivos ainda NÃO entregues ao projeto (apenas o guia). Quando recebidos,
+salvar conforme CLIENT_REPLACEMENT_GUIDE.md e substituir as referências.
+
+### Fotos por projeto (prefixo = mesmo projeto/carrossel)
+
+| Prefixo | Qtd. | Conteúdo | Destino no site |
+|---|---|---|---|
+| 1771634656/657 | 9 | Grades/estruturas de proteção em janelas | Portfólio > Grades |
+| 1771634799 | 4 | Porta/fechamento metálico + instalação | Portfólio > Portas e fechamentos |
+| 1771634800 | 1 | Corrimão/rampa preto | Serviços > Corrimãos |
+| 1771639042 | 2 + vídeo | Guarda-corpo preto ornamental | Case guarda-corpo (antes/depois) |
+| 1771639815 | 1 + vídeo | Tela metálica suspensa interna | Projetos sob medida |
+| 1771640508 | 8 | Residencial branco: guarda-corpo, grade, portão | Case residencial (mosaico) |
+| 1771640657 | 3 | Cobertura/pergolado metálico | Serviços > Coberturas |
+| 1771640874 | 3 | Painéis/tela metálica preta | Projetos especiais |
+| 1784983926 | 2 + vídeo | Fechamento galvanizado + detalhe de fechadura | Fechaduras/segurança |
+| 1784984255 | 3 + vídeo | Portão preto residencial instalado | Hero secundário / case de portão |
+
+### Vídeos (mapa de uso definido no guia)
+
+| Prefixo | Duração | Uso sugerido |
+|---|---|---|
+| 1775044474 | 12,0s | **Seção Processo/Bastidores (prioridade)** |
+| 1774786200 | 83,3s | Recortes 6–10s para Automação (não publicar inteiro no hero) |
+| 1784984255 | 34,9s | Case de portão instalado |
+| 1774112432 | 45,5s | Portão verde — transformação/antes-depois |
+| 1771634438 | 10,9s | Loop curto em Corrimãos |
+| 1771639042 | 16,9s | Case pareado guarda-corpo |
+| 1771639815 | 18,2s | Projetos especiais/interiores |
+| 1774054576 | 15,6s | Demonstração de funcionamento (portão/grade) |
+| 1775043504 | 44,4s | Clientes comerciais |
+| 1775043910 | 39,5s | Grade/fechamento preto interno |
+| 1775044199 | 13,1s | Cobertura/estrutura externa |
+| 1775045580 | 12,0s | Estrutura decorativa colorida |
+| 1775046057 | 25,9s | Carrinho/estrutura sob medida |
+| 1784983926 | 22,9s | Detalhe de fechadura |
+
+### Regras técnicas do guia para as mídias
+- Converter para AVIF/WebP + JPG fallback; thumbnails e srcset.
+- Vídeos: MP4 H.264 (+WebM), muted + playsinline, poster, lazy load;
+  recortes de 6–10s para loops; versões completas em modal/portfólio.
+- Logo: usar logo.jpg original SEM distorcer/recolorir; área de proteção escura.
+
 ## Placeholders restantes
 
 **Todas as fotografias** do site são referências ilustrativas geradas para o

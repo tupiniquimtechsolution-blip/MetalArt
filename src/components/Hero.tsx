@@ -12,7 +12,7 @@ import {
   useScramble,
   waLink,
 } from "../lib/motion";
-import { IconArrowRight, IconArrowUpRight, Magnetic, Marquee } from "./ui";
+import { IconArrowRight, IconArrowUpRight, IconWhatsApp, Magnetic, Marquee } from "./ui";
 
 /** Slideshow com as mídias reais do site oficial (fade + zoom lento) */
 const HERO_SLIDES = [

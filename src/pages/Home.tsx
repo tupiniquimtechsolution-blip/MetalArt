@@ -7,6 +7,7 @@ import { Portfolio } from "../components/Portfolio";
 import { BeforeAfter, Diagnostic } from "../components/Interactives";
 import { HowWeWork, Anatomy } from "../components/Process";
 import { Reviews, InstaStrip, Location, FinalCta } from "../components/Social";
+import { FaqSection } from "../components/FaqSection";
 import { WeldDivider } from "../components/ui";
 
 export function Home() {
@@ -30,6 +31,7 @@ export function Home() {
       <Reviews />
       <InstaStrip />
       <Location />
+      <FaqSection />
       <FinalCta />
     </>
   );
