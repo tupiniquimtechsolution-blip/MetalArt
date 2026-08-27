@@ -198,12 +198,18 @@ export function Header() {
       >
         <div
           className={cn(
-            "mx-auto flex max-w-[1440px] items-center justify-between px-5 transition-all duration-300 md:px-8",
+            "flex items-center justify-between gap-4 px-5 transition-all duration-300 md:px-8",
             scrolled ? "h-16" : "h-20 md:h-24"
           )}
         >
-          <Link to="/" aria-label="Metal & Art Serralheria — início" onClick={() => track("nav_home")}>
-            <Logo />
+          {/* logo ancorado no canto superior esquerdo do site */}
+          <Link
+            to="/"
+            aria-label="Metal & Art Serralheria — início"
+            onClick={() => track("nav_home")}
+            className="shrink-0 self-center"
+          >
+            <Logo compact />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">

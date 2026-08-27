@@ -37,10 +37,13 @@ export function Logo({
   className,
   stacked = false,
   badge = false,
+  compact = false,
 }: {
   className?: string;
   stacked?: boolean;
   badge?: boolean;
+  /** versão reduzida para o header — largura controlada e respiro */
+  compact?: boolean;
 }) {
   // Quando o arquivo oficial existir (public/client-assets/logo/),
   // ele assume o lugar da reprodução tipográfica automaticamente.
@@ -54,7 +57,7 @@ export function Logo({
           src={official}
           alt="Metal & Art Serralheria"
           onError={() => setBroken(true)}
-          className={badge ? "h-20 w-auto" : "h-11 w-auto"}
+          className={badge ? "h-20 w-auto" : compact ? "h-10 w-auto" : "h-11 w-auto"}
         />
       </span>
     );
@@ -88,9 +91,14 @@ export function Logo({
         className
       )}
     >
-      <SparkMark className="h-6 w-6 shrink-0 text-ember-500" />
+      <SparkMark className={cn("shrink-0 text-ember-500", compact ? "h-5 w-5" : "h-6 w-6")} />
       <span className="leading-none">
-        <span className="font-display block text-[1.22rem] leading-none tracking-[0.045em] uppercase">
+        <span
+          className={cn(
+            "font-display block font-bold leading-none uppercase",
+            compact ? "text-[1.02rem] tracking-[0.05em]" : "text-[1.22rem] tracking-[0.045em]"
+          )}
+        >
           Metal
           <span className="relative mx-[0.12em] inline-block text-[1.05em] text-ember-500">
             &amp;
@@ -99,10 +107,18 @@ export function Logo({
           Art
         </span>
         <span
-          className="mt-[0.34em] block h-[2px] w-full bg-gradient-to-r from-ember-600 via-ember-500/55 to-transparent"
+          className={cn(
+            "block w-full bg-gradient-to-r from-ember-600 via-ember-500/55 to-transparent",
+            compact ? "mt-[0.3em] h-px" : "mt-[0.34em] h-[2px]"
+          )}
           aria-hidden="true"
         />
-        <span className="font-mono mt-[0.32em] block text-[0.55rem] tracking-[0.42em] text-steel-400 uppercase">
+        <span
+          className={cn(
+            "font-mono block tracking-[0.42em] text-steel-400 uppercase",
+            compact ? "mt-[0.3em] text-[0.48rem]" : "mt-[0.32em] text-[0.55rem]"
+          )}
+        >
           Serralheria
         </span>
       </span>
