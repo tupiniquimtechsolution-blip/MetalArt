@@ -1,5 +1,7 @@
 # Gemini Adapter — Tupiniquim
 
-Antes de agir, leia `AGENTS.md` por completo e use `.agents/skills/tupiniquim-toolbox/SKILL.md` quando pertinente.
+@./AGENTS.md
 
-Não duplique regras aqui. Em caso de conflito, `AGENTS.md` prevalece.
+A skill universal do projeto está em `.agents/skills/tupiniquim-toolbox/SKILL.md`.
+
+Não duplique regras neste arquivo. Em caso de conflito, `AGENTS.md` prevalece.
